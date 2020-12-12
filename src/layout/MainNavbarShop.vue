@@ -1,13 +1,13 @@
 <template>
 <div>
     <!-- type="primary" -->
-  <div class="fixed-top" style="background-color:#e5e5e5; width:100%;">
+  <!-- <div class="fixed-top" style="background-color:#e5e5e5; width:100%;">
     <div class="row">
       <div class="col-md-12">
         <a href="#">Download App</a>
       </div>
     </div>
-  </div>
+  </div> -->
   <navbar
     position="fixed"
     menu-classes="ml-auto"
@@ -54,15 +54,15 @@
           >
             <a
               class="nav-link"
-              href="/administrator/pengguna"
+              href="/daftar-pesanan"
             >
               <p>Daftar Pesanan</p>
             </a>
             <a
               class="nav-link"
-              href="/administrator/role"
+              href="/percakapan"
             >
-              <p>Lacak Pesanan</p>
+              <p>Percakapan</p>
             </a>
           </drop-down>
       </li>

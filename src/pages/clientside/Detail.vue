@@ -96,11 +96,11 @@
             </div>
             <div class="col-md-12">
               <div class="tab">
-                <button class="tablinks Deskripsi" @click="openCity(this, 'Deskripsi')">Deskripsi</button>
+                <button class="tablinks Deskripsi active" @click="openCity(this, 'Deskripsi')">Deskripsi</button>
                 <button class="tablinks Ulasan" @click="openCity(this, 'Ulasan')">Ulasan</button>
               </div>
 
-              <div id="Deskripsi" class="tabcontent">
+              <div id="Deskripsi" class="tabcontent" style="display:block;">
                 <h3>Deskripsi</h3>
                 <p>
 
@@ -188,28 +188,53 @@
                     </div>
                   </div>
                 </div>
-
               </div>
-
           </div>
         </div>
       </div>
     </div>
-    <modal :show.sync="modals.classic" id="exampleModal" headerClasses="justify-content-center">
-      <h4 slot="header" class="title title-up">Modal title</h4>
-      <p>
-        Far far away, behind the word mountains, far from the countries Vokalia
-        and Consonantia, there live the blind texts. Separated they live in
-        Bookmarksgrove right at the coast of the Semantics, a large language
-        ocean. A small river named Duden flows by their place and supplies it
-        with the necessary regelialia. It is a paradisematic country, in which
-        roasted parts of sentences fly into your mouth.
-      </p>
+    <modal :show.sync="modals.classic" :show-close="false" data-backdrop="static" data-keyboard="false" id="exampleModal" headerClasses="justify-content-center">
+      <h4 slot="header" class="title title-up">Percakapan</h4>
+        <!-- <skeleton-card actions round hover></skeleton-card> -->
+        <ul class="chat">
+          <li class="left clearfix">
+              <span class="chat-img pull-left"> <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> </span> 
+              <div class="chat-body clearfix">
+                <div class="header"> <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"></span>12 mins ago</small> </div>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales. </p>
+              </div>
+          </li>
+          <li class="right clearfix">
+              <span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /> </span> 
+              <div class="chat-body clearfix">
+                <div class="header">  <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small> <strong class="pull-right primary-font">Bhaumik Patel</strong> </div>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales. </p>
+              </div>
+          </li>
+          <li class="left clearfix">
+              <span class="chat-img pull-left"> <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" /> </span> 
+              <div class="chat-body clearfix">
+                <div class="header"> <strong class="primary-font">Jack Sparrow</strong> <small class="pull-right text-muted"> <span class="glyphicon glyphicon-time"></span>14 mins ago</small> </div>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales. </p>
+              </div>
+          </li>
+          <li class="right clearfix">
+              <span class="chat-img pull-right"> <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" /> </span> 
+              <div class="chat-body clearfix">
+                <div class="header"> <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small> <strong class="pull-right primary-font">Bhaumik Patel</strong> </div>
+                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales. </p>
+              </div>
+          </li>
+        </ul>
       <template slot="footer">
-        <n-button>Nice Button</n-button>
-        <n-button type="danger" @click.native="modals.classic = false"
-          >Close</n-button
-        >
+            <fg-input
+              class="no-border"
+              placeholder="tulis pesan..."
+              addon-right-icon="now-ui-icons users_circle-08">
+            </fg-input>
+            <n-button type="danger" @click.native="modals.classic = false">Tutup</n-button>
+            <n-button type="primary" @click.native="modals.classic = false">kirim</n-button>
+        <!-- <n-button>Nice Button</n-button> -->
       </template>
     </modal>
 
@@ -223,12 +248,13 @@ import 'hooper/dist/hooper.css';
 import { Hooper, Slide,Navigation as HooperNavigation } from 'hooper';
 import SkeletonCard from 'vue-skeleton-screen'
 import regeneratorRuntime from "regenerator-runtime";
-import { Modal,Button } from '../../components';
+import { Modal,Button,FormGroupInput } from '../../components';
 
 export default {
   name: 'index',
   bodyClass: 'index-page',
   components: {
+    SkeletonCard,
     Hooper,
     Slide,
     HooperNavigation,
@@ -236,6 +262,7 @@ export default {
     regeneratorRuntime,
     Modal,
     [Button.name]: Button,
+    [FormGroupInput.name]: FormGroupInput
 
   },
   data() {

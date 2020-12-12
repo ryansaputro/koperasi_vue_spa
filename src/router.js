@@ -3,6 +3,9 @@ import Router from 'vue-router';
 import Indexs from './pages/Index.vue';
 import Index from './pages/clientside/Index.vue';
 import Detail from './pages/clientside/Detail.vue';
+import Keranjang from './pages/clientside/Keranjang.vue';
+import DaftarPesanan from './pages/clientside/DaftarPesanan.vue';
+import Chatting from './pages/clientside/Chatting.vue';
 import DashboardAdmin from './pages/adminside/Dashboard.vue';
 import PageNotfound from './pages/adminside/404.vue';
 import MasterItem from './pages/adminside/master/item/Index.vue';
@@ -37,6 +40,45 @@ const routes= [
       name: 'detail',
       components: {
         default: Detail,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      }
+    },
+    {
+      path: '/keranjang',
+      name: 'keranjang',
+      components: {
+        default: Keranjang,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      }
+    },
+    {
+      path: '/daftar-pesanan',
+      name: 'daftar pesanan',
+      components: {
+        default: DaftarPesanan,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      }
+    },
+    {
+      path: '/percakapan',
+      name: 'percakapan',
+      components: {
+        default: Chatting,
         header: MainNavbarShop,
         footer: MainFooterShop
       },

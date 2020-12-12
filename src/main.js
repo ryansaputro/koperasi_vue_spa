@@ -32,6 +32,13 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 // import Skeleton from 'vue-loading-skeleton';
 import 'vue-search-select/dist/VueSearchSelect.css'
 import JQuery from 'jquery'
+import BeeGridTable from "beegridtable";
+//import BeeLocale from "beegridtable/src/locale"; //default English
+import BeelocaleID from 'beegridtable/src/locale/lang/id-ID' // Set zh-CN default
+
+import 'beegridtable/dist/styles/beegridtable.css';
+
+
 window.$ = JQuery
 
 // default url in axios
@@ -46,6 +53,10 @@ window.axios = require('axios');;
 Vue.use(Loading);
 Vue.use(VueSweetalert2);
 Vue.use(NowUiKit);
+Vue.use(BeeGridTable, {
+  locale: BeelocaleID,
+  capture: true,
+});
 
 new Vue({
   router,

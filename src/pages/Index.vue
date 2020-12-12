@@ -826,7 +826,7 @@
     </modal>
     <!-- end row -->
 
-    <!-- <basic-elements></basic-elements> -->
+    <basic-elements></basic-elements>
     <!-- <navigation></navigation> -->
     <!-- <tabs-section></tabs-section> -->
     <!-- <progress-pagination></progress-pagination>

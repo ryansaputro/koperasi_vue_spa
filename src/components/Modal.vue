@@ -14,8 +14,8 @@
       :aria-hidden="!show"
     >
       <div
-        class="modal-dialog"
-        :class="[{ 'modal-notice': type === 'notice' }, modalClasses]"
+        class="modal-dialog modal-xxl"
+        :class="[{ 'modal-notice': type === 'notice' }, modalClasses, type === 'mini' ? 'label-pengiriman-modal' : '']"
       >
         <div class="modal-content">
           <slot name="base-content">

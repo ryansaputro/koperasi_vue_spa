@@ -21,8 +21,20 @@
             <li>
               <a href="#">Kantor Cabang</a>
             </li>
-
           </ul>
+          <h5 class="title">Partner Kita</h5>
+           <a href="#">
+            <img src="/img/kementrian.jpg" style="width:30px;" alt="" />
+          </a>
+           <a href="#">
+            <img src="/img/umkm.png" style="width:90px;" alt="" />
+          </a>
+           <a href="#">
+            <img src="/img/koperasi.jpg" style="width:30px;" alt="" />
+          </a>
+           <a href="#">
+            <img src="/img/astra.png" style="width:30px;" alt="" />
+          </a>
         </div>
         <div class="col-md-3">
           <h5 class="title">Koperasi</h5>
@@ -78,7 +90,7 @@
       </div>
       
       <div class="copyright">
-        &copy; {{ year }}, Toko Kita.
+        copyright &copy; {{ year }}, Toko Kita.
         <a href="https:///www.invisionapp.com" target="_blank" rel="noopener"
           ></a
         >

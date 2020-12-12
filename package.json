@@ -12,6 +12,7 @@
   "dependencies": {
     "@syncfusion/ej2-vue-grids": "^18.3.40",
     "babel-eslint": "^10.1.0",
+    "beegridtable": "^1.1.5",
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",

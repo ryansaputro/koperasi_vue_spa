@@ -122,7 +122,7 @@ export default {
         background:'',
         currentRouteName:'',
         options2: [],
-            item2: '',
+        item2: '',
     };
   },
   created() {
