@@ -15,7 +15,7 @@
     <!-- :transparent="transparent" -->
     <!-- :color-on-scroll="colorOnScroll" -->
     <template>
-      <router-link v-popover:popover1 class="navbar-brand" to="/">
+      <router-link v-popover:popover1 class="navbar-brand" to="/" style="display:contents;">
         <img src="/img/toko-kita.png" alt="" />
       </router-link>
       <el-popover
@@ -30,7 +30,8 @@
         </div> -->
       </el-popover>
     </template>
-    <template slot="navbar-menu">
+    <!-- <template v-if="$isMobile()"> -->
+  <template slot="navbar-menu">
 
       <li class="nav-item search" v-bind:class="currentRouteName == 'dashboard' ? 'active' : ''">
         <div class="col-sm-12 col-lg-12">
@@ -110,7 +111,40 @@
   </navbar>
 </div>
 </template>
+<style>
+  #parentx{
+    overflow: hidden;
+    height: 500px;
+    position: relative;
+  }
 
+  .header-sidebar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
+    h4 > button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-left: 10px;
+    }
+      
+  .footer-sidebar > button{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+
+      border: 0px solid rgba(0,0,0,0) !important;
+      border-left: 1px solid rgba(0,0,0,.07) !important;
+      border-radius: 0px !important;
+  }
+
+</style>
 <script>
 import { DropDown, Navbar, NavLink } from '../components';
 import { Popover } from 'element-ui';
@@ -121,7 +155,15 @@ export default {
   data() {
     return {
       isLogin:'',
-      currentRouteName:''
+      currentRouteName:'',
+      open: false,
+      overlay: true,
+      fullheight: true,
+      fullwidth: false,
+      right: false,
+      active:false,
+      active: 'home',
+      activeSidebar: false
     };
   },
   created() {

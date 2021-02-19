@@ -11,6 +11,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.styl$/,
+        loader: "stylus-loader", // compiles Styl to CSS
+      },
+      {
         test: /\.(woff2?|eot|ttf|otf)$/,
         loader: 'file-loader',
         options: {

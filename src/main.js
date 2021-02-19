@@ -35,8 +35,18 @@ import JQuery from 'jquery'
 import BeeGridTable from "beegridtable";
 //import BeeLocale from "beegridtable/src/locale"; //default English
 import BeelocaleID from 'beegridtable/src/locale/lang/id-ID' // Set zh-CN default
+import Buefy from 'buefy'
+import VueMobileDetection from 'vue-mobile-detection'
+import Vuesax from 'vuesax'
 
+
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+// import 'buefy/dist/buefy.css'
 import 'beegridtable/dist/styles/beegridtable.css';
+import 'material-icons/iconfont/material-icons.css';
+import "vue-navigation-bar/dist/vue-navigation-bar.css";
+
+
 
 
 window.$ = JQuery
@@ -53,6 +63,9 @@ window.axios = require('axios');;
 Vue.use(Loading);
 Vue.use(VueSweetalert2);
 Vue.use(NowUiKit);
+Vue.use(Buefy)
+Vue.use(VueMobileDetection)
+Vue.use(Vuesax)
 Vue.use(BeeGridTable, {
   locale: BeelocaleID,
   capture: true,

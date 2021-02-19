@@ -8,193 +8,80 @@
     </div>
     <div class="main-detail">
       <div class="container">
+        <div class="row">
+        </div>
         <div class="row menu-second">
-          <div class="header-transaction row mb-2">
-            <div class="col-sm-6 mb-2">
-              <span class="now-ui-icons shopping_bag-16 icon-belanja"></span>
-              <span class="belanja">Belanja</span>
-              <br>
-            </div>
-            <div class="col-sm-6">
-              <drop-down tag="li" title="" class="text-right pull-right ikon-style" icon="now-ui-icons loader_gear">
-                <nav-link class="dropdown-item">
-                  <n-button type="btn btn-primary btn-simple" @click.native="modals.classic = true">
-                      <i class="now-ui-icons shopping_delivery-fast"></i> Lacak Pesanan
-                  </n-button>
-                </nav-link>
-              </drop-down>
-              <span class="badge badge-primary text-right pull-right">sukses</span>
-            </div>
-            <hr>
-            <div class="col-sm-2">
-              <img src="img/bg1.jpg" alt="" class="img-raised" />
-            </div>
-            <div class="col-sm-10">
-              <span class="tgl-belanja">2020-12-12 23:50:32</span>
-              <p class="nama-produk">Women's Blouse</p>
-                <div class="deskripsi">
-                  <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                  </span>
-                </div>
-              <p>1 produk</p>
-            </div>
-            <div class="col-md-12">
-              <p>Total Belanja : <span class="total-belanja">$40,00</span></p>
-            </div>
+          <div class="col-md-8 bee-col-sm-offset-8 filter">
+            <button class="btn btn-round btn-primary btn-simple">Semua</button>
+            <button class="btn btn-round btn-primary btn-simple">Pesanan Diproses</button>
+            <button class="btn btn-round btn-primary btn-simple">Pesanan Dikirim</button>
+            <button class="btn btn-round btn-primary btn-simple">Pesanan Selesai</button>
           </div>
-
-          <div class="header-transaction row mb-2">
-            <div class="col-sm-6 mb-2">
-              <span class="now-ui-icons shopping_bag-16 icon-belanja"></span>
-              <span class="belanja">Belanja</span>
-              <br>
+          <!-- <div class="row"> -->
+            <div class="col-md-4 sidemenu">
+              <strong class="tanggal">Tanggal :</strong>
+              <date-range-picker
+                v-model="dateRange"
+              ></date-range-picker>
+              <strong class="filter">Filter :</strong>
+              <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
+              <strong class="tipe-bayar">Tipe Bayar :</strong>
+              <button class="btn btn-round btn-primary btn-simple btn-sm">COD</button>
+              <button class="btn btn-round btn-success btn-simple btn-sm">Pas Laku</button>
+              
+              
+              <div class="info-transaksi">
+                <h5 class="info-transaksi-title">Info Transaksi</h5>
+                <n-progress type="info" :value="60" label="Pesanan Diproses" show-value>
+                </n-progress>
+                <n-progress type="primary" :value="30" label="Pesanan Dikirim" show-value>
+                </n-progress>
+                <n-progress type="success" :value="10" label="Pesanan Selesai" show-value>
+                </n-progress>
+              </div>
             </div>
-            <div class="col-sm-6">
-              <drop-down tag="li" title="" class="text-right pull-right ikon-style" icon="now-ui-icons loader_gear">
-                <nav-link class="dropdown-item">
-                  <n-button type="btn btn-primary btn-simple" @click.native="modals.classic = true">
-                      <i class="now-ui-icons shopping_delivery-fast"></i> Lacak Pesanan
-                  </n-button>
-                </nav-link>
-              </drop-down>
-              <span class="badge badge-primary text-right pull-right">sukses</span>
-            </div>
-            <hr>
-            <div class="col-sm-2">
-              <img src="img/bg1.jpg" alt="" class="img-raised" />
-            </div>
-            <div class="col-sm-10">
-              <span class="tgl-belanja">2020-12-12 23:50:32</span>
-              <p class="nama-produk">Women's Blouse</p>
-                <div class="deskripsi">
-                  <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                  </span>
+            <div class="col-md-8">
+              <div class="header-transaction row mb-2" v-for="(data, idx) in 20" :key="idx">
+                <div class="col-sm-6 mb-2">
+                  <br>
                 </div>
-              <p>1 produk</p>
-
-            </div>
-            <div class="col-md-12">
-              <p>Total Belanja : <span class="total-belanja">$40,00</span></p>
-            </div>
-
-          </div>
-
-          <div class="header-transaction row mb-2">
-            <div class="col-sm-6 mb-2">
-              <span class="now-ui-icons shopping_bag-16 icon-belanja"></span>
-              <span class="belanja">Belanja</span>
-              <br>
-            </div>
-            <div class="col-sm-6">
-              <drop-down tag="li" title="" class="text-right pull-right ikon-style" icon="now-ui-icons loader_gear">
-                <nav-link class="dropdown-item">
-                  <n-button type="btn btn-primary btn-simple" @click.native="modals.classic = true">
-                      <i class="now-ui-icons shopping_delivery-fast"></i> Lacak Pesanan
-                  </n-button>
-                </nav-link>
-              </drop-down>
-              <span class="badge badge-primary text-right pull-right">sukses</span>
-            </div>
-            <hr>
-            <div class="col-sm-2">
-              <img src="img/bg1.jpg" alt="" class="img-raised" />
-            </div>
-            <div class="col-sm-10">
-              <span class="tgl-belanja">2020-12-12 23:50:32</span>
-              <p class="nama-produk">Women's Blouse</p>
-                <div class="deskripsi">
-                  <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                  </span>
+                <div class="col-sm-6">
                 </div>
-              <p>1 produk</p>
+                <hr>
+                <div class="col-sm-2">
+                  <img src="img/bg1.jpg" alt="" class="img-raised" />
+                </div>
+                <div class="col-sm-10">
+                  <span class="tgl-belanja">2020-12-12 23:50:32</span>
+                  <!-- <p class="nama-produk">Women's Blouse</p> -->
+                  <drop-down tag="li" title="Women's Blouse" class="ikon-style"> 
+                    <nav-link class="dropdown-item setting">
+                      <n-button type="btn btn-info btn-simple btn-round" @click.native="modals.classic = true">
+                          <i class="now-ui-icons shopping_delivery-fast"></i> Detail Pesanan
+                      </n-button>
+                      <br>
+                      <n-button type="btn btn-primary btn-simple btn-round" @click.native="modals.classic = true">
+                          <i class="now-ui-icons shopping_delivery-fast"></i> Lacak Pesanan
+                      </n-button>
+                    </nav-link>
+                  </drop-down>
 
-            </div>
-            <div class="col-md-12">
-              <p>Total Belanja : <span class="total-belanja">$40,00</span></p>
-            </div>
-
-          </div>
-
-              <!-- <tabs
-                pills
-                class="nav-align-center"
-                tab-content-classes="gallery"
-                tab-nav-classes="nav-pills-just-icons"
-                type="primary"
-              > -->
-                <!-- <tab-pane title="Profile">
-                  <i slot="label" class="now-ui-icons design_image"></i>
-
-                  <div class="col-md-10 ml-auto mr-auto">
-                    <div class="row collections text-center">
-                      <div class="track mr-1 col-md-2">
-                        <span class="now-ui-icons education_paper"></span>
-                        <p class="label-track">Dipesan(12)</p>
-                      </div>
-                      <div class="track mr-1 col-md-2">
-                        <span class="now-ui-icons loader_refresh"></span>
-                        <p class="label-track">Diproses(12)</p>
-                      </div>
-                      <div class="track mr-1 col-md-2">
-                        <span class="now-ui-icons shopping_delivery-fast"></span>
-                        <p class="label-track">Dikirim(12)</p>
-                      </div>
-                      <div class="track mr-1 col-md-2">
-                        <span class="now-ui-icons shopping_shop"></span>
-                        <p class="label-track">Sampai(12)</p>
-                      </div>
-                      <div class="track mr-1 col-md-2">
-                        <span class="now-ui-icons business_money-coins"></span>
-                        <p class="label-track">Bayar(12)</p>
-                      </div>
-                      <div class="track col-md-2">
-                        <span class="now-ui-icons ui-1_check"></span>
-                        <p class="label-track">Selesai(12)</p>
-                      </div>
+                    <div class="deskripsi">
+                      <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
+                      </span>
                     </div>
-                  </div>
-                </tab-pane> -->
-
-                <!-- <tab-pane title="Home">
-                  <i slot="label" class="now-ui-icons location_world"></i>
-
-                  <div class="col-md-10 ml-auto mr-auto">
-                    <div class="row collections">
-                      <div class="col-md-6">
-                        <img src="img/bg1.jpg" alt="" class="img-raised" />
-                        <img src="img/bg3.jpg" alt="" class="img-raised" />
-                      </div>
-                      <div class="col-md-6">
-                        <img src="img/bg8.jpg" alt="" class="img-raised" />
-                        <img src="img/bg7.jpg" alt="" class="img-raised" />
-                      </div>
-                    </div>
-                  </div>
-                </tab-pane> -->
-
-              <!-- </tabs> -->
-
+                  <p>1 produk</p>
+                </div>
+                <div class="col-md-12">
+                  <p>Total Belanja : <span class="total-belanja">$40,00</span></p>
+                </div>
+              </div>
+            </div>
+          <!-- </div> -->
         </div>
       </div>
     </div>
-
-    <el-popover
-            ref="popover1"
-            popper-class="popover popover-primary"
-            placement="left"
-            width="200"
-            trigger="click">
-      <h3 class="popover-header">Silahkan lengkapi Alamat Pengiriman</h3>
-      <div class="popover-body">
-        <!-- <strong v-if="form.label == ''">label alamat harus diisi.</strong> -->
-        <strong v-if="form.penerima == ''">penerima harus diisi.</strong>
-        <strong v-if="form.handphone == ''">handphone harus diisi.</strong>
-        <strong v-if="form.alamat == ''">alamat harus diisi.</strong>
-      </div>
-    </el-popover>
 
     <!-- Classic Modal -->
     <modal :show.sync="modals.classic" headerClasses="justify-content-center">
@@ -279,42 +166,61 @@
     <!-- end row -->
   </div>
 </template>
+<style scoped>
+  .slot {
+    background-color: #aaa;
+    padding: 0.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
+  .text-black {
+    color: #000;
+  }
+</style>
 <script>
 import 'hooper/dist/hooper.css';
-import { Hooper, Slide,Navigation as HooperNavigation } from 'hooper';
-import SkeletonCard from 'vue-skeleton-screen'
-import regeneratorRuntime from "regenerator-runtime";
-import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane } from '../../components';
+import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane,Progress } from '../../components';
 import { Popover, Tooltip, DatePicker } from 'element-ui';
 import _ from 'lodash'
 import { ModelSelect } from 'vue-search-select'
+import Datepicker from 'vuejs-datepicker';
+import {en, id} from 'vuejs-datepicker/dist/locale'
+import DateRangePicker from 'vue2-daterange-picker'
+import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
+import VueRangedatePicker from 'vue-rangedate-picker'
 
 export default {
   name: 'index',
   bodyClass: 'index-page',
   components: {
     DropDown,
-    SkeletonCard,
-    Hooper,
-    Slide,
-    HooperNavigation,
-    SkeletonCard,
-    regeneratorRuntime,
     Modal,
-    [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput,
-    [Checkbox.name]: Checkbox,
-    [Popover.name]: Popover,
+    [DatePicker.name]: DatePicker,
     ModelSelect,
-    [Radio.name]: Radio,
+    [Button.name]: Button,
     [Tooltip.name]: Tooltip,
+    [FormGroupInput.name]: FormGroupInput,
     Tabs,
-    TabPane
+    TabPane,
+    DateRangePicker,
+    VueRangedatePicker,
+    [Progress.name]: Progress,
 
   },
   data() {
+    let startDate = new Date();
+    let endDate = new Date();
+    endDate.setDate(endDate.getDate() + 6)
     return {
+        pickers: {
+          datePicker: ''
+        },
+        dateRange: {startDate, endDate},
+        en: en,
+        id: id,
         itemsToShow: 2,
         centerMode: true,
         data: 10,
@@ -339,6 +245,11 @@ export default {
         img: 'http://placehold.it/120x80'
 
     };
+  },
+  filters: {
+    date(val) {
+      return val ? val.toLocaleString() : ''
+    }
   },
   methods: {
     productSelected (e) {

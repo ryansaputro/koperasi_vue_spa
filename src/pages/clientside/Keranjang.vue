@@ -10,115 +10,35 @@
       <div class="container">
         <div class="row menu-second">
             <div class="col-md-12">
-              
-              <!-- <div class="item-header">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <strong>Nama</strong>
-                  </div>
-                  <div class="col-sm-2 text-center">
-                    <strong>Jumlah</strong>
-                  </div>
-                  <div class="col-sm-4 text-right">
-                    <strong>Harga</strong>
-                  </div>
-                </div>
-              </div> -->
 
               <div class="item-body-keranjang">
-                <div class="row mb-2" id="numb_1">
+                <div class="keranjang-div row mb-2" v-for="(dt, idx) in dataproduct" :key="dt.id">
                   <div class="col-md-1">
-                    <input type="checkbox" class="form-control checkbox-produk" @change="productSelected()"  v-model="form.product_selected" value="1">
+                    <input type="checkbox" :value="dt.id" class="form-control checkbox-produk" @change="productSelected(idx, dt.id, $event)" v-model="form.product_selected[dt.id]">
                   </div>
                   <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
-                    <!-- <img class="img-responsive" src="" alt="prewiew"> -->
                   </div>
-                  <div class="col-md-5">
-                      <p class="nama-produk">Women's Blouse</p>
+                  <div class="col-md-5 produk">
+                      <p class="nama-produk">{{dt.nama}}</p>
                       <div class="deskripsi">
                         <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
+                            {{dt.deskripsi}}
                         </span>
                       </div>
-                      <div class="quantity-toggle">
-                        <button :class="quantity > 1 ? 'btn-danger' : 'btn-default'" class="qty-btn btn btn-round btn-sm" @click="decrement()">&mdash;</button>
-                        <input type="text" class="qty" :value="quantity" readonly>
-                        <button class="qty-btn btn btn-success btn-round btn-sm" @click="increment()">&#xff0b;</button>
-                        <button class="btn btn-danger btn-simple btn-sm">
-                          <span class="now-ui-icons ui-1_simple-remove"> Hapus dr keranjang</span>
-                        </button>
-                      </div>
-
-                        <fg-input
-                          class="no-border mt-2"
-                          placeholder="catatan..."
-                          addon-right-icon="now-ui-icons design-2_ruler-pencil">
-                        </fg-input>
+                      <number-input size="small" :min="1" v-model="dt.qty" inline center controls rounded></number-input>
+                      <a class="btn btn-sm btn-danger trash">
+                        <span class="now-ui-icons ui-1_simple-remove"></span>
+                      </a>
+                      <fg-input
+                        v-model="form.catatan[dt.id]"
+                        class="no-border mt-2"
+                        placeholder="catatan..."
+                        addon-right-icon="now-ui-icons design-2_ruler-pencil"
+                        @input="deskripsiAdd(dt.id, idx)">
+                      </fg-input>
+                        
                   </div>
-                  <div class="col-md-4 text-right harga">$20,00</div>
-                </div>
-                <div class="row mb-2" id="numb_2">
-                  <div class="col-md-1">
-                    <input type="checkbox" class="form-control checkbox-produk" @change="productSelected()"  v-model="form.product_selected" value="2">
-                  </div>
-                  <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
-                    <!-- <img class="img-responsive" src="" alt="prewiew"> -->
-                  </div>
-                  <div class="col-md-5">
-                      <p class="nama-produk">Women's Blouse</p>
-                      <div class="deskripsi">
-                        <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                        </span>
-                      </div>
-                      <div class="quantity-toggle">
-                        <button :class="quantity > 1 ? 'btn-danger' : 'btn-default'" class="qty-btn btn btn-round btn-sm" @click="decrement()">&mdash;</button>
-                        <input type="text" class="qty" :value="quantity" readonly>
-                        <button class="qty-btn btn btn-success btn-round btn-sm" @click="increment()">&#xff0b;</button>
-                        <button class="btn btn-danger btn-simple btn-sm">
-                          <span class="now-ui-icons ui-1_simple-remove"> Hapus dr keranjang</span>
-                        </button>
-                      </div>
-
-                        <fg-input
-                          class="no-border mt-2"
-                          placeholder="catatan..."
-                          addon-right-icon="now-ui-icons design-2_ruler-pencil">
-                        </fg-input>
-                  </div>
-                  <div class="col-md-4 text-right harga">$20,00</div>
-                </div>
-                <div class="row mb-2" id="numb_3">
-                  <div class="col-md-1">
-                    <input type="checkbox" class="form-control checkbox-produk" @change="productSelected()"  v-model="form.product_selected" value="3">
-                    <!-- <n-checkbox v-model="form.product_selected" @change="productSelected()"  v-model="form.product_selected" value="true"></n-checkbox> -->
-                  </div>
-                  <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
-                    <!-- <img class="img-responsive" src="" alt="prewiew"> -->
-                  </div>
-                  <div class="col-md-5">
-                      <p class="nama-produk">Women's Blouse</p>
-                      <div class="deskripsi">
-                        <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                        </span>
-                      </div>
-                      <div class="quantity-toggle">
-                        <button :class="quantity > 1 ? 'btn-danger' : 'btn-default'" class="qty-btn btn btn-round btn-sm" @click="decrement()">&mdash;</button>
-                        <input type="text" class="qty" :value="quantity" readonly>
-                        <button class="qty-btn btn btn-success btn-round btn-sm" @click="increment()">&#xff0b;</button>
-                        <button class="btn btn-danger btn-simple btn-sm">
-                          <span class="now-ui-icons ui-1_simple-remove"> Hapus dr keranjang</span>
-                        </button>
-                      </div>
-
-                        <fg-input
-                          class="no-border mt-2"
-                          placeholder="catatan..."
-                          addon-right-icon="now-ui-icons design-2_ruler-pencil">
-                        </fg-input>
-                  </div>
-                  <div class="col-md-4 text-right harga">$20,00</div>
+                  <div class="col-md-4 text-right harga">{{formatRupiah(dt.harga*parseInt(dt.qty), 'Rp')}}</div>
                 </div>
               </div>
 
@@ -130,11 +50,12 @@
               </button>
             </div>
             <div class="col-md-6">
-                <n-button type="btn btn-primary btn-block" @click.native="modals.classic = true">
-                    Checkout 
+                <n-button type="btn btn-primary btn-block" @click="getAllQty" v-if="checkout.length > 0" @click.native="modals.classic = true">
+                    Checkout
                     <span class="now-ui-icons arrows-1_minimal-right"> </span> 
                 </n-button>
             </div>
+            
         </div>
       </div>
     </div>
@@ -143,48 +64,20 @@
       <div class="row">
         <div class="col-md-6">
             <h5 class="title title-up alamat-pengiriman">Detail Pembelian</h5>
-              <div class="item-header">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <strong>Nama</strong>
-                  </div>
-                  <div class="col-sm-2 text-right">
-                    <strong>Jumlah</strong>
-                  </div>
-                  <div class="col-sm-4 text-right pr-5">
-                    <strong>Harga</strong>
-                  </div>
-                </div>
-              </div>
               <div class="item-body">
-                <div class="row">
-                  <div class="col-sm-6">
-                    <p class="nama-produk">Women's Blouse</p>
+                <div v-for="(data, index) in checkout" class="row data checkout-div" :id="'checkout_'+data.id">
+                  <div class="col-sm-2 img-produk checkout" v-bind:style="{ backgroundImage: 'url(' + img + ')' }"></div>
+                  <div class="col-sm-9">
+                    <p class="nama-produk">{{data.nama}}</p>
                       <div class="deskripsi">
                         <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
+                            {{data.deskripsi}}
                         </span>
                       </div>
-                  </div>
-                  <div class="col-sm-2 text-right">
-                      <p class="nama-produk">2</p>
-                  </div>
-                  <div class="col-sm-4 text-right pr-4">
-                      <p class="nama-produk">$40,00</p>
-                  </div>
-                  <div class="col-sm-6">
-                    <p class="nama-produk">Women's Blouse</p>
-                      <div class="deskripsi">
-                        <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, repellat corporis reprehenderit quas doloremque atque rem! Rem iure molestiae, laboriosam sint fugit vel enim, quos necessitatibus et quas possimus culpa?
-                        </span>
-                      </div>
-                  </div>
-                  <div class="col-sm-2 text-right">
-                      <p class="nama-produk">2</p>
-                  </div>
-                  <div class="col-sm-4 text-right pr-4">
-                      <p class="nama-produk">$40,00</p>
+                      <span class="qty-produk">{{data.qty}}</span>x
+                      <span class="qty-produk">{{formatRupiah(data.harga, 'Rp')}}</span>
+                      <!-- <span class="total-produk">Rp{{data.harga*parseInt(data.qty)}}</span> -->
+                      <p class="catatan">Catatan : <span>{{data.catatan}}</span></p>
                   </div>
                 </div>
               </div>
@@ -214,22 +107,22 @@
                 <strong>Total Pembelian</strong>
               </div>
               <div class="col-sm-2 text-right">
-                <strong>4 item</strong>
+                <strong>{{totQty}}</strong>
               </div>
               <div class="col-sm-4 text-right">
-                <strong>$80,00</strong>
+                <strong>{{formatRupiah(totHarga, 'Rp')}}</strong>
               </div>
               <div class="col-sm-8">
                 <strong>Ongkir</strong>
               </div>
               <div class="col-sm-4 text-right">
-                <strong>$1,00</strong>
+                <strong>{{formatRupiah(0, 'Rp')}}</strong>
               </div>
               <div class="col-sm-8">
                 <strong>Subtotal</strong>
               </div>
               <div class="col-sm-4 text-right">
-                <strong>$81,00</strong>
+                <strong>{{formatRupiah(parseInt(totHarga+0), 'Rp')}}</strong>
               </div>
             </div>
 
@@ -312,8 +205,8 @@
       </div>
 
       <template slot="footer">
-        <input type="reset" class="btn btn-danger" value="RESET">
-        <n-button type="success" @click.native="modals.mini = false"
+        <button class="btn btn-danger btn-sm" type="button" @click="reset">Reset</button>
+        <n-button v-if="form.label != '' && form.penerima != '' && form.handphone != '' && form.alamat != ''" type="success" @click.native="modals.mini = false"
           >Simpan</n-button
         >
       </template>
@@ -326,7 +219,7 @@
             trigger="click">
       <h3 class="popover-header">Silahkan lengkapi Alamat Pengiriman</h3>
       <div class="popover-body">
-        <!-- <strong v-if="form.label == ''">label alamat harus diisi.</strong> -->
+        <strong v-if="form.label == ''">label alamat harus diisi.</strong>
         <strong v-if="form.penerima == ''">penerima harus diisi.</strong>
         <strong v-if="form.handphone == ''">handphone harus diisi.</strong>
         <strong v-if="form.alamat == ''">alamat harus diisi.</strong>
@@ -347,6 +240,8 @@ import { Modal,Button,FormGroupInput,Checkbox,Radio } from '../../components';
 import { Popover, Tooltip, DatePicker } from 'element-ui';
 import _ from 'lodash'
 import { ModelSelect } from 'vue-search-select'
+import VueNumberInput from '@chenfengyuan/vue-number-input';
+import VueNumericInput from 'vue-numeric-input';
 
 export default {
   name: 'index',
@@ -366,15 +261,22 @@ export default {
     ModelSelect,
     [Radio.name]: Radio,
     [Tooltip.name]: Tooltip,
+    [VueNumberInput.name]: VueNumberInput,
+    VueNumericInput
 
   },
   data() {
     return {
+        value:1,
+        totalItem:0,
         itemsToShow: 2,
         centerMode: true,
         data: 10,
-        quantity: 1,
+        quantity: [],
         options2: [],
+        checkout: [],
+        checkoutTemp: [],
+        checkoutTemp2: [],
         item2: '',
         modals: {
             classic: false,
@@ -389,16 +291,112 @@ export default {
           penerima:'',
           handphone:'',
           alamat:'',
-          product_selected:[]
+          product_selected:[],
+          qty:[],
+          nama_produk:[],
+          harga:[],
+          catatan:[]
         },
-        img: 'http://placehold.it/120x80'
+        img: 'http://placehold.it/120x80',
+        dataproduct:[],
+        id:[],
+        totQty:0,
+        totHarga:0,
+        qtyArray:[]
 
     };
   },
   methods: {
-    productSelected (e) {
-      console.log(this.form.product_selected);
+    /* Fungsi formatRupiah */
+		formatRupiah(angka, prefix){
+			var number_string = angka.toString(),
+			split   		= number_string.split(','),
+			sisa     		= split[0].length % 3,
+			rupiah     		= split[0].substr(0, sisa),
+			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+			// tambahkan titik jika yang di input sudah menjadi angka ribuan
+			if(ribuan){
+				var separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     },
+    
+    getAllQty() {
+      var totalArray = 0;
+      var totalHarga = 0;
+      $.each(this.checkout, function(k,v){
+        totalArray += Number(v.qty);
+        totalHarga += Number(v.qty*v.harga);
+      });
+      this.totQty = totalArray;
+      this.totHarga = totalHarga;
+      
+    },
+    reset() {
+      this.form.label = '';
+      this.form.penerima = '';
+      this.form.handphone = '';
+      this.form.alamat = '';
+    },
+    deskripsiAdd(item, index) {
+      this.dataproduct[index]['catatan'] = this.form.catatan[item];
+
+    },
+    getCartData() {
+      var json = [          
+                {id:10, nama:'Blouse 1', harga:2000, qty:1, deskripsi: 'lorem ipsum 1'}, 
+                {id:12, nama:'Blouse 2', harga:3000, qty:3, deskripsi: 'lorem ipsum 2'},
+                {id:13, nama:'Blouse 3', harga:2000, qty:1, deskripsi: 'lorem ipsum 3'}, 
+                {id:14, nama:'Blouse 4', harga:3000, qty:3, deskripsi: 'lorem ipsum 4'},
+                {id:17, nama:'Blouse 5', harga:2000, qty:1, deskripsi: 'lorem ipsum 5'}
+              ];
+      var jsoon = [{
+                    // "12":{"id": "12", "nama":"ryan", "harga":"1000", "qty":"2", "deskripsi":"lorem ipsum 3"},
+                    // "34":{"id":"34", "nama":"saputro", "harga":"1000", "qty":"2", "deskripsi":"lorem ipsum 4"},
+                    "10":{"id":10, "nama":'Blouse 1', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 1'}, 
+                    "12":{"id":12, "nama":'Blouse 2', "harga":3000, "qty":3, "deskripsi": 'lorem ipsum 2'},
+                    "13":{"id":13, "nama":'Blouse 3', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 3'}, 
+                    "14":{"id":14, "nama":'Blouse 4', "harga":3000, "qty":3, "deskripsi": 'lorem ipsum 4'},
+                    "17":{"id":17, "nama":'Blouse 5', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 5'}
+                  }];
+      this.dataproduct = json;
+    },
+    getNama() {
+    },
+    productSelected (idx, e, event) {
+
+      
+      if (event.target.checked) {
+
+        if($.inArray(e, this.id) === -1){
+            var id = this.id
+            var allqty = this.qtyArray;
+            id.push(e)
+            allqty.push(this.dataproduct[idx].qty);
+          }
+
+          var cekot = this.checkout;
+          cekot.push(this.dataproduct[idx]);
+          
+      }else{
+        var cekot = this.checkout;
+        var id = this.id;
+        $.each(this.id, function(k,v){
+          if(v == e){
+            cekot.splice(k,1);
+            id.splice(k,1);
+          }
+        })
+
+
+      }
+
+  },
+
     //kategori reset
     reset2 () {
         this.item2 = ''
@@ -407,16 +405,6 @@ export default {
     selectFromParentComponent2 () {
         this.item2 = this.options2[0].value
     },
-    increment () {
-      this.quantity++
-    },
-    decrement () {
-      if(this.quantity === 1) {
-        alert('Negative quantity not allowed')
-      } else {
-        this.quantity--
-      }
-    }, 
     openCity(evt, cityName) {
       var i, tabcontent, tablinks;
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -445,8 +433,12 @@ export default {
       });
     });
 
-    // show popover
-    // $(".main-questions").popover('show');
+  },
+  created() {
+    this.getCartData();
+    this.getNama();
+  },
+  computed: {
   }
 };
 </script>
