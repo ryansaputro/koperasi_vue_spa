@@ -6,6 +6,8 @@ import Detail from './pages/clientside/Detail.vue';
 import Keranjang from './pages/clientside/Keranjang.vue';
 import DaftarPesanan from './pages/clientside/DaftarPesanan.vue';
 import Chatting from './pages/clientside/Chatting.vue';
+import ProdukPerKategori from './pages/clientside/ProdukPerKategori.vue';
+
 import DashboardAdmin from './pages/adminside/Dashboard.vue';
 import PageNotfound from './pages/adminside/404.vue';
 import MasterItem from './pages/adminside/master/item/Index.vue';
@@ -27,6 +29,19 @@ const routes= [
       name: 'index',
       components: {
         default: Index,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      }
+    },
+    {
+      path: '/categories/:nama_kategori',
+      name: 'produk',
+      components: {
+        default: ProdukPerKategori,
         header: MainNavbarShop,
         footer: MainFooterShop
       },

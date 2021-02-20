@@ -43,26 +43,28 @@
           class="nav-link"
           href="/keranjang"
         >
-          <i class="now-ui-icons shopping_cart-simple"></i>
+          <i class="fas fa-shopping-cart"></i>
         </a>
       </li>
       <li class="nav-item separate" v-if="isLogin == true">
         <drop-down
                   tag="li"
                   title=""
-                  icon="now-ui-icons ui-1_bell-53"
+                  icon="fas fa-bell"
                   class="nav-item akun"
           >
             <a
               class="nav-link"
               href="/daftar-pesanan"
             >
+              <i class="fas fa-clipboard-list"></i>
               <p>Daftar Pesanan</p>
             </a>
             <a
               class="nav-link"
               href="/percakapan"
             >
+              <i class="fas fa-comments-dollar"></i>
               <p>Percakapan</p>
             </a>
           </drop-down>
@@ -70,22 +72,22 @@
       <li class="nav-item" v-if="isLogin == true">
         <drop-down
               tag="li"
-              title="Akun"
-              icon="now-ui-icons users_single-02"
+              title=""
+              icon="fas fa-user-tie"
               class="nav-item akun"
       >
         <a
           class="nav-link"
           href="/administrator/pengguna"
         >
-          <i class="now-ui-icons users_circle-08"></i>
+          <i class="fas fa-user-tie"></i> 
           <p>Profil</p>
         </a>
         <a
           class="nav-link"
           href="/administrator/role"
         >
-          <i class="now-ui-icons ui-2_favourite-28"></i>
+          <i class="fas fa-grin-hearts"></i>
           <p>Wishlist</p>
         </a>
         <a
@@ -94,7 +96,7 @@
           class="nav-link"
           href="/login"
         >
-          <i class="now-ui-icons arrows-1_share-66"></i>
+          <i class="fas fa-sign-out-alt"></i>
           <p>Keluar</p>
         </a>
       </drop-down>

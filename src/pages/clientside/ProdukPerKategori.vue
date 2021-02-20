@@ -1,9 +1,16 @@
 <template>
   <div>
+    <!-- <div class="bc-icons-2">
+        <ol class="breadcrumb blue-grey lighten-4">
+            <li class="breadcrumb-item"><a class="black-text" href="/">Beranda</a> > </li>
+            <li class="breadcrumb-item"><a class="black-text" href="/">Kategori</a> > </li>
+            <li class="breadcrumb-item active text-capitalize">{{currentRouteName}}</li>
+        </ol>
+    </div> -->
     <div class="container br-breadcrumb">
       <div class="row">
         <div class="col-md-12">
-            Beranda > <span class="text-capitalize">{{currentRouteName}}</span>
+            Beranda > Kategori > <span class="text-capitalize">{{currentRouteName}}</span>
         </div>
       </div>
     </div>
@@ -12,74 +19,82 @@
         <div class="row">
         </div>
         <div class="row menu-second">
-          <div class="col-md-8 bee-col-sm-offset-8 filter" v-if="tipe_bayar == 'all'">
-            <button class="btn btn-round btn-info"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
+          <div class="col-md-5 bee-col-sm-offset-8 filter mb-3">
+            <span class="mt-2">Menampilkan 2000 produk untuk kategori "<strong class="text-capitalize">{{currentRouteName}}</strong>"</span>
           </div>
-          <div class="col-md-8 bee-col-sm-offset-8 filter" v-else-if="tipe_bayar == 'laku'">
-            <button class="btn btn-round btn-success"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
-          </div>
-          <div class="col-md-8 bee-col-sm-offset-8 filter" v-else>
-            <button class="btn btn-round btn-warning"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
+          <div class="col-md-3 mb-3">
+            <select class="form-control">
+              <option>terbaru</option>
+              <option>murah</option>
+            </select>
           </div>
           <!-- <div class="row"> -->
-            <div class="col-md-4 sidemenu">
-              <strong class="tanggal">Tanggal :</strong>
-              <date-range-picker
-                v-model="dateRange"
-              ></date-range-picker>
-              <strong class="filter">Filter :</strong>
+            <div class="col-md-4 sidemenu produk-perkategori">
+              <strong class="filter">Filter di kategori ini :</strong>
               <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
+              <hr>
               <strong class="tipe-bayar">Tipe Bayar :</strong>
               <button @click="tipeBayar('all')" v-bind:class="tipe_bayar == 'all' ? '' : 'btn-simple'" class="btn btn-round btn-info btn-sm"><i class="fas fa-money-check-alt"></i> Semua</button>
               <button @click="tipeBayar('laku')" v-bind:class="tipe_bayar == 'laku' ? '' : 'btn-simple'" class="btn btn-round btn-success btn-sm"><i class="fas fa-hand-holding-usd"></i> Pas Laku</button>
               <button @click="tipeBayar('cod')" v-bind:class="tipe_bayar == 'cod' ? '' : 'btn-simple'" class="btn btn-round btn-warning btn-sm"><i class="fas fa-handshake"></i> Cod</button>
-              
-              
-              <div class="info-transaksi">
-                <h5 class="info-transaksi-title">Info Transaksi</h5>
-                <n-progress type="info" :value="60" label="Pesanan Diproses" show-value>
-                </n-progress>
-                <n-progress type="primary" :value="30" label="Pesanan Dikirim" show-value>
-                </n-progress>
-                <n-progress type="success" :value="10" label="Pesanan Selesai" show-value>
-                </n-progress>
-              </div>
+              <hr>
+              <strong>Harga : </strong>
+              <fg-input
+                placeholder="Harga minimal"
+                type="number"
+              >
+              </fg-input>
+              <fg-input
+                placeholder="Harga maksimal"
+                type="number"
+              >
+              </fg-input>
+              <hr>
+              <strong>Kondisi :</strong>
+              <n-checkbox v-model="checkboxes.unchecked">Baru</n-checkbox>
+              <n-checkbox v-model="checkboxes.checked">Bekas</n-checkbox>
+
+              <button class="btn btn-info btn-block" type="button"><i class="fas fa-filter"></i> Filter</button>
             </div>
             <div class="col-md-8">
-              <div class="header-transaction row mb-2" v-for="(dt, idx) in 10" :key="dt.id">
-                  <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
-                  </div>
-                  <div class="col-md-5 produk">
-                      <span>20 Februari 2021 12:05:00</span>
-                      <p class="nama-produk">Blouse {{dt}}</p>
-                      <div class="deskripsi">
-                        <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptates aut exercitationem nisi sapiente ipsa deserunt, rem cumque tempora ducimus. Illo dicta corporis velit, exercitationem nisi quaerat quam quisquam voluptatibus?
-                        </span>
-                      </div>
-                      <span>{{dt}}x{{formatRupiah(100, 'Rp')}}</span>
-                        
-                  </div>
-                  <div class="col-md-4 text-right">
-                    <span class="text-right harga">
-                      {{formatRupiah(dt*1000, 'Rp')}}
-                    </span>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <button class="btn btn-sm btn-simple btn-warning"><i class="fas fa-info-circle"></i> Detail</button>
-                        <n-button type="btn btn-sm btn-simple btn-danger" @click.native="modals.classic = true"><i class="fas fa-truck-moving"></i> Lacak</n-button>
-                      </div>
+              <div class="row">
+                <div class="col-md-3 col-sm-6 product" v-for="(n, index) in 12">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a href="/cat/pakaian/womens-blouse">
+                                <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg">
+                                <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
+                            </a>
+                            <ul class="social">
+                                <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="fas fa-search"></i></a></li>
+                                <li><a href="" data-tip="+ Wishlist"><i class="fas fa-grin-hearts"></i></a></li>
+                                <li><a href="" data-tip="+ Keranjang"><i class="fas fa-shopping-cart"></i></a></li>
+                            </ul>
+                            <span class="product-new-label">Sale</span>
+                            <span class="product-discount-label">20%</span>
+                        </div>
+                        <ul class="rating">
+                            <li class="now-ui-icons objects_diamond"></li>
+                            <li class="now-ui-icons objects_diamond"></li>
+                            <li class="now-ui-icons objects_diamond"></li>
+                            <li class="now-ui-icons objects_diamond"></li>
+                            <li class="now-ui-icons objects_diamond disable"></li>
+                        </ul>
+                        <div class="product-content">
+                            <h3 class="title"><a href="/cat/pakaian/womens-blouse">Women's Blouse {{n}}</a></h3>
+                            <div class="price">Rp{{n}}0.000<br>
+                                <span>Rp1{{n}}0.000</span>
+                            </div>
+                            <ul class="rating">
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem disable"></i>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
+                </div>
               </div>
             </div>
         </div>
@@ -206,6 +221,7 @@ export default {
     [Button.name]: Button,
     [Tooltip.name]: Tooltip,
     [FormGroupInput.name]: FormGroupInput,
+    [Checkbox.name]: Checkbox,
     Tabs,
     TabPane,
     DateRangePicker,
@@ -218,6 +234,12 @@ export default {
     let endDate = new Date();
     endDate.setDate(endDate.getDate() + 6)
     return {
+        checkboxes: {
+          unchecked: false,
+          checked: true,
+          disabledUnchecked: false,
+          disabledChecked: true
+        },
         pickers: {
           datePicker: ''
         },
@@ -244,8 +266,7 @@ export default {
           alamat:'',
           product_selected:[]
         },
-        img: 'http://placehold.it/120x80',
-        currentRouteName:''
+        img: 'http://placehold.it/120x80'
 
     };
   },
@@ -298,7 +319,12 @@ export default {
   created() {
     this.getCartData();
     this.tipeBayar();
-    this.currentRouteName = this.$route.name;
+  },
+  computed: {
+    currentRouteName() {
+          return this.$route.params.nama_kategori;
+
+    }
   }
 };
 </script>

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="bc-icons-2">
-        <ol class="breadcrumb blue-grey lighten-4">
-            <li class="breadcrumb-item"><a class="black-text" href="#">Beranda</a><i class="now-ui-icons arrows-1_minimal-right mx-2" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item"><a class="black-text" href="#">Pakaian</a><i class="now-ui-icons arrows-1_minimal-right mx-2" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item active">Women's Blouse</li>
-        </ol>
+    <div class="container br-breadcrumb">
+      <div class="row">
+        <div class="col-md-12">
+            Beranda > <span class="text-capitalize">{{currentRouteParentName}}</span> > <span class="text-capitalize">{{currentRouteName}}</span>
+        </div>
+      </div>
     </div>
     <div class="main-detail">
       <div class="container">
@@ -262,11 +262,13 @@ export default {
     regeneratorRuntime,
     Modal,
     [Button.name]: Button,
-    [FormGroupInput.name]: FormGroupInput
+    [FormGroupInput.name]: FormGroupInput,
 
   },
   data() {
     return {
+        currentRouteParentName:'',
+        currentRouteName:'',
         itemsToShow: 2,
         centerMode: true,
         data: 10,
@@ -319,6 +321,12 @@ export default {
 
     // show popover
     // $(".main-questions").popover('show');
-  }
+  },
+  created() {
+    var item = this.$route.params.nama_item;
+    this.currentRouteName = item.replace('-', ' ');
+    this.currentRouteParentName = this.$route.params.nama_kategori;
+  },
+
 };
 </script>

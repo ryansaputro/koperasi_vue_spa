@@ -27,32 +27,38 @@
       <div class="container">
         <div class="row menu-second">
             <div class="col-md-12 kategori">
-            <h3 class="title">Kategori</h3>
-            <div class="row">
+            <h3 class="title text-capitalize">Kategori {{kategori}}</h3>
+            <div class="row" v-if="kategori != 'lainnya'">
                 <router-link to="categories/sembako" class="col-md-3 categories" tag="div">
                     <img class="img-cat" src="https://img.icons8.com/nolan/2x/kawaii-rice.png">
                     <span>Sembako</span>
                 </router-link>
-                <router-link to="categories/sembako" class="col-md-5 large-cat categories" style="margin-left:10px;" tag="div">
+                <router-link to="categories/smartphone" class="col-md-5 large-cat categories" style="margin-left:10px;" tag="div">
                     <img class="img-cat" src="https://img.icons8.com/ultraviolet/2x/iphone.png">
                     <span>Smartphone</span>
                 </router-link>
-                <router-link to="categories/sembako" class="col-md-3 categories" style="margin-left:10px;" tag="div">
+                <router-link to="categories/perkakas" class="col-md-3 categories" style="margin-left:10px;" tag="div">
                     <img class="img-cat" src="https://img.icons8.com/nolan/344/kitchenwares.png">
                     <span>Perkakas</span>
                 </router-link>
-                <router-link to="categories/sembako" class="col-md-5 large-cat categories" style="margin-top:10px;" tag="div">
+                <router-link to="categories/elektronik" class="col-md-5 large-cat categories" style="margin-top:10px;" tag="div">
                     <img class="img-cat" src="https://img.icons8.com/nolan/344/tv-show.png">
                     <span>Elektronik</span>
                 </router-link>
-                <router-link to="categories/sembako" class="col-md-3 categories" style="margin-top:10px;margin-left:10px;" tag="div">
+                <router-link to="categories/sekolah" class="col-md-3 categories" style="margin-top:10px;margin-left:10px;" tag="div">
                     <img class="img-cat" src="https://img.icons8.com/nolan/344/school.png">
                     <span>Sekolah</span>
                 </router-link>
-                <router-link to="categories/sembako" class="col-md-3 categories" style="margin-top:10px;margin-left:10px;" tag="div">
+                <div class="col-md-3 categories" @click="kategoriLainnya('lainnya')" style="margin-top:10px;margin-left:10px;">
                     <img class="img-cat" src="https://img.icons8.com/nolan/344/more.png">
                     <span>Lainnya</span>
-                </router-link>
+                </div>
+            </div>
+            <div class="row" v-else>
+                <div class="col-md-12">
+                    <router-link :to="'categories/'+data" class="btn btn-default text-capitalize" v-for="(data, idx) in allkategori" :key="idx"><strong>{{data}}</strong></router-link>
+                    <button class="btn btn-danger" @click="kategoriLainnya('back')"><strong><i class="fas fa-arrow-left"></i> Kembali</strong></button>
+                </div>
             </div>
             </div>
         </div>
@@ -71,9 +77,9 @@
                                 <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
                             </a>
                             <ul class="social">
-                                <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="now-ui-icons ui-1_zoom-bold"></i></a></li>
-                                <li><a href="" data-tip="+ Wishlist"><i class="now-ui-icons ui-2_favourite-28"></i></a></li>
-                                <li><a href="" data-tip="+ Keranjang"><i class="now-ui-icons shopping_cart-simple"></i></a></li>
+                                <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="fas fa-search"></i></a></li>
+                                <li><a href="" data-tip="+ Wishlist"><i class="fas fa-grin-hearts"></i></a></li>
+                                <li><a href="" data-tip="+ Keranjang"><i class="fas fa-shopping-cart"></i></a></li>
                             </ul>
                             <span class="product-new-label">Sale</span>
                             <span class="product-discount-label">20%</span>
@@ -90,7 +96,13 @@
                             <div class="price">Rp{{n}}0.000<br>
                                 <span>Rp1{{n}}0.000</span>
                             </div>
-                            <a class="add-to-cart" href="">Tambah ke Keranjang</a>
+                            <ul class="rating">
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem disable"></i>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -113,9 +125,9 @@
                                 <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
                             </a>
                             <ul class="social">
-                                <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="now-ui-icons ui-1_zoom-bold"></i></a></li>
-                                <li><a href="" data-tip="+ Wishlist"><i class="now-ui-icons ui-2_favourite-28"></i></a></li>
-                                <li><a href="" data-tip="+ Keranjang"><i class="now-ui-icons shopping_cart-simple"></i></a></li>
+                                <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="fas fa-search"></i></a></li>
+                                <li><a href="" data-tip="+ Wishlist"><i class="fas fa-grin-hearts"></i></a></li>
+                                <li><a href="" data-tip="+ Keranjang"><i class="fas fa-shopping-cart"></i></a></li>
                             </ul>
                             <span class="product-new-label">Sale</span>
                             <span class="product-discount-label">20%</span>
@@ -132,7 +144,13 @@
                             <div class="price">Rp{{n}}0.000<br>
                                 <span>Rp1{{n}}0.000</span>
                             </div>
-                            <a class="add-to-cart" href="">Tambah ke Keranjang</a>
+                            <ul class="rating">
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem"></i>
+                                <i class="fas fa-gem disable"></i>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -167,7 +185,21 @@ export default {
         itemsToShow: 2,
         centerMode: true,
         data: 10,
+        kategori:'',
+        allkategori:['sembako', 'smartphone', 'perkakas', 'elektronik', 'sekolah', 'buku', 'sepeda motor', 'sepeda', 'bahan bangunan', 'alat dapur', 'alat bangunan', 'alat otomotif']
     };
   },
+  methods: {
+      kategoriLainnya(nama_kat){
+          if(nama_kat == 'lainnya'){
+              this.kategori = 'lainnya';
+          }else{
+              this.kategori = '';
+          }
+      }
+  },
+  created() {
+      this.kategoriLainnya();
+  }
 };
 </script>

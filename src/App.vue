@@ -19,6 +19,7 @@ export default {};
     <router-view name="footer" />
   </div>
 </template>
+<script src="https://kit.fontawesome.com/32bd7b2c73.js" crossorigin="anonymous"></script>
 <script>
 export default {};
 </script>

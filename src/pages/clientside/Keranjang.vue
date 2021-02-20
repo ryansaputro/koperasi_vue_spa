@@ -1,10 +1,11 @@
 <template>
   <div>
-    <div class="bc-icons-2">
-        <ol class="breadcrumb blue-grey lighten-4">
-            <li class="breadcrumb-item"><a class="black-text" href="#">Beranda</a><i class="now-ui-icons arrows-1_minimal-right mx-2" aria-hidden="true"></i></li>
-            <li class="breadcrumb-item active">Keranjang</li>
-        </ol>
+    <div class="container br-breadcrumb">
+      <div class="row">
+        <div class="col-md-12">
+            Beranda > <span class="text-capitalize">{{currentRouteName}}</span>
+        </div>
+      </div>
     </div>
     <div class="main-detail">
       <div class="container">
@@ -14,7 +15,8 @@
               <div class="item-body-keranjang">
                 <div class="keranjang-div row mb-2" v-for="(dt, idx) in dataproduct" :key="dt.id">
                   <div class="col-md-1">
-                    <input type="checkbox" :value="dt.id" class="form-control checkbox-produk" @change="productSelected(idx, dt.id, $event)" v-model="form.product_selected[dt.id]">
+                    <n-checkbox v-model="form.product_selected[dt.id]" @input="productSelected(idx, dt.id, $event)"></n-checkbox>
+                    <!-- <input type="checkbox" :value="dt.id" class="form-control checkbox-produk" @change="productSelected(idx, dt.id, $event)" v-model="form.product_selected[dt.id]"> -->
                   </div>
                   <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
                   </div>
@@ -27,7 +29,9 @@
                       </div>
                       <number-input size="small" :min="1" v-model="dt.qty" inline center controls rounded></number-input>
                       <a class="btn btn-sm btn-danger trash">
-                        <span class="now-ui-icons ui-1_simple-remove"></span>
+                        <i class="fas fa-trash-alt"></i>
+                        Hapus
+                        <!-- <span class="now-ui-icons ui-1_simple-remove"></span> -->
                       </a>
                       <fg-input
                         v-model="form.catatan[dt.id]"
@@ -302,7 +306,9 @@ export default {
         id:[],
         totQty:0,
         totHarga:0,
-        qtyArray:[]
+        qtyArray:[],
+        currentRouteName:''
+
 
     };
   },
@@ -354,23 +360,13 @@ export default {
                 {id:14, nama:'Blouse 4', harga:3000, qty:3, deskripsi: 'lorem ipsum 4'},
                 {id:17, nama:'Blouse 5', harga:2000, qty:1, deskripsi: 'lorem ipsum 5'}
               ];
-      var jsoon = [{
-                    // "12":{"id": "12", "nama":"ryan", "harga":"1000", "qty":"2", "deskripsi":"lorem ipsum 3"},
-                    // "34":{"id":"34", "nama":"saputro", "harga":"1000", "qty":"2", "deskripsi":"lorem ipsum 4"},
-                    "10":{"id":10, "nama":'Blouse 1', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 1'}, 
-                    "12":{"id":12, "nama":'Blouse 2', "harga":3000, "qty":3, "deskripsi": 'lorem ipsum 2'},
-                    "13":{"id":13, "nama":'Blouse 3', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 3'}, 
-                    "14":{"id":14, "nama":'Blouse 4', "harga":3000, "qty":3, "deskripsi": 'lorem ipsum 4'},
-                    "17":{"id":17, "nama":'Blouse 5', "harga":2000, "qty":1, "deskripsi": 'lorem ipsum 5'}
-                  }];
       this.dataproduct = json;
     },
     getNama() {
     },
     productSelected (idx, e, event) {
-
       
-      if (event.target.checked) {
+      if (event == true) {
 
         if($.inArray(e, this.id) === -1){
             var id = this.id
@@ -437,6 +433,7 @@ export default {
   created() {
     this.getCartData();
     this.getNama();
+    this.currentRouteName = this.$route.name;
   },
   computed: {
   }

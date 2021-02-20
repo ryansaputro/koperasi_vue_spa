@@ -45,6 +45,8 @@ import 'vuesax/dist/vuesax.css' //Vuesax styles
 import 'beegridtable/dist/styles/beegridtable.css';
 import 'material-icons/iconfont/material-icons.css';
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 
 

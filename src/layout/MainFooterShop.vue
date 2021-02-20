@@ -65,6 +65,9 @@
             <li>
               <a href="#">Kebijakan Privasi</a>
             </li>
+            <li>
+              <a href="#">FAQ</a>
+            </li>
           </ul>
 
           <h5 class="title">Ikuti Kami</h5>
