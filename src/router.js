@@ -7,6 +7,7 @@ import Keranjang from './pages/clientside/Keranjang.vue';
 import DaftarPesanan from './pages/clientside/DaftarPesanan.vue';
 import Chatting from './pages/clientside/Chatting.vue';
 import ProdukPerKategori from './pages/clientside/ProdukPerKategori.vue';
+import Pengaturan from './pages/clientside/Pengaturan.vue';
 
 import DashboardAdmin from './pages/adminside/Dashboard.vue';
 import PageNotfound from './pages/adminside/404.vue';
@@ -74,6 +75,10 @@ const routes= [
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
+        // menus: 'read-404'
       }
     },
     {
@@ -87,7 +92,11 @@ const routes= [
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
       }
+
     },
     {
       path: '/percakapan',
@@ -100,7 +109,28 @@ const routes= [
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
       }
+
+    },
+    {
+      path: '/pengaturan',
+      name: 'pengaturan',
+      components: {
+        default: Pengaturan,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
+      }
+
     },
     {
       path: '/xx',

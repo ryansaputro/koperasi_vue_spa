@@ -1886,6 +1886,25 @@ i {
       border-radius: 10px;
       padding: 10px;
     }
+    
+    .img-profil{
+      padding: 20px;
+      border-radius: 100%;
+    }
+
+    .pengaturan{
+      box-shadow: 1px 1px 5px #cecece;
+      border-radius: 10px; 
+    }
+
+    .dropdown.show .dropdown-menu,
+    .dropdown-menu.open{
+      border-radius: 10px;
+    }
+
+    .separator{
+      border-bottom: 1px solid #cecece;
+    }
 
     .trash {
       margin-top:-10px;

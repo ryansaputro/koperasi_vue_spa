@@ -11,7 +11,6 @@
       <div class="container">
         <div class="row menu-second">
             <div class="col-md-12">
-
               <div class="item-body-keranjang">
                 <div class="keranjang-div row mb-2" v-for="(dt, idx) in dataproduct" :key="dt.id">
                   <div class="col-md-1">

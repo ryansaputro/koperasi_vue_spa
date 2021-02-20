@@ -38,7 +38,7 @@
           <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="isLogin == true">
         <a
           class="nav-link"
           href="/keranjang"
@@ -73,15 +73,19 @@
         <drop-down
               tag="li"
               title=""
-              icon="fas fa-user-tie"
               class="nav-item akun"
+              icon="fas fa-user-tie"
       >
+      <div class="separator text-center">
+        <img src="https://ptetutorials.com/images/user-profile.png" class="img-profil">
+        <strong class="text-capitalize">{{username}}</strong>
+      </div>
         <a
           class="nav-link"
-          href="/administrator/pengguna"
+          href="/pengaturan"
         >
-          <i class="fas fa-user-tie"></i> 
-          <p>Profil</p>
+          <i class="fas fa-user-cog"></i>
+          <p>Pengaturan</p>
         </a>
         <a
           class="nav-link"
@@ -165,12 +169,16 @@ export default {
       right: false,
       active:false,
       active: 'home',
-      activeSidebar: false
+      activeSidebar: false,
+      username:''      
     };
   },
   created() {
     this.currentRouteName = this.$route.name;
     this.isLogin = localStorage.getItem('users') != null ? true : false;
+    var users = localStorage.getItem('users');
+    var user = JSON.parse(users)
+    this.username = user.username;
   },
   methods: {
     onLogout() {
