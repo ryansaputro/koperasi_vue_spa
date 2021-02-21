@@ -38,6 +38,7 @@ import BeelocaleID from 'beegridtable/src/locale/lang/id-ID' // Set zh-CN defaul
 import Buefy from 'buefy'
 import VueMobileDetection from 'vue-mobile-detection'
 import Vuesax from 'vuesax'
+import VueSimpleAccordion from 'vue-simple-accordion';
 
 
 import 'vuesax/dist/vuesax.css' //Vuesax styles
@@ -47,6 +48,7 @@ import 'material-icons/iconfont/material-icons.css';
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+// import 'vue-simple-accordion/dist/vue-simple-accordion.css';
 
 
 
@@ -68,6 +70,7 @@ Vue.use(NowUiKit);
 Vue.use(Buefy)
 Vue.use(VueMobileDetection)
 Vue.use(Vuesax)
+Vue.use(VueSimpleAccordion)
 Vue.use(BeeGridTable, {
   locale: BeelocaleID,
   capture: true,

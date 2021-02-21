@@ -30,30 +30,41 @@
           </div>
           <!-- <div class="row"> -->
             <div class="col-md-4 sidemenu produk-perkategori">
-              <strong class="filter">Filter di kategori ini :</strong>
-              <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
-              <hr>
-              <strong class="tipe-bayar">Tipe Bayar :</strong>
-              <button @click="tipeBayar('all')" v-bind:class="tipe_bayar == 'all' ? '' : 'btn-simple'" class="btn btn-round btn-info btn-sm"><i class="fas fa-money-check-alt"></i> Semua</button>
-              <button @click="tipeBayar('laku')" v-bind:class="tipe_bayar == 'laku' ? '' : 'btn-simple'" class="btn btn-round btn-success btn-sm"><i class="fas fa-hand-holding-usd"></i> Pas Laku</button>
-              <button @click="tipeBayar('cod')" v-bind:class="tipe_bayar == 'cod' ? '' : 'btn-simple'" class="btn btn-round btn-warning btn-sm"><i class="fas fa-handshake"></i> Cod</button>
-              <hr>
-              <strong>Harga : </strong>
-              <fg-input
-                placeholder="Harga minimal"
-                type="number"
-              >
-              </fg-input>
-              <fg-input
-                placeholder="Harga maksimal"
-                type="number"
-              >
-              </fg-input>
-              <hr>
-              <strong>Kondisi :</strong>
-              <n-checkbox v-model="checkboxes.unchecked">Baru</n-checkbox>
-              <n-checkbox v-model="checkboxes.checked">Bekas</n-checkbox>
+              <div class="form-group">
+                  <label>Filter di kategori ini : </label>
+                  <fg-input
+                    placeholder="Cari barang di kategori ini.."
+                    type="text"
+                  >
+                  </fg-input>
+              </div>
+              <div class="form-group">
+                  <label>Metode Pembayaran : </label>
+                  <div class="d-block text-left">
+                    <button @click="tipeBayar('all')" v-bind:class="tipe_bayar == 'all' ? '' : 'btn-simple'" class="btn btn-round btn-info btn-sm"><i class="fas fa-money-check-alt"></i> Semua</button>
+                    <button @click="tipeBayar('laku')" v-bind:class="tipe_bayar == 'laku' ? '' : 'btn-simple'" class="btn btn-round btn-success btn-sm"><i class="fas fa-hand-holding-usd"></i> Pas Laku</button>
+                    <button @click="tipeBayar('cod')" v-bind:class="tipe_bayar == 'cod' ? '' : 'btn-simple'" class="btn btn-round btn-warning btn-sm"><i class="fas fa-handshake"></i> Cod</button>
+                  </div>
+              </div>
 
+              <div class="form-group">
+                  <label>Harga : </label>
+                  <fg-input
+                    placeholder="Harga minimal"
+                    type="number"
+                  >
+                  </fg-input>
+                  <fg-input
+                    placeholder="Harga maksimal"
+                    type="number"
+                  >
+                  </fg-input>
+              </div>
+              <div class="form-group">
+                  <label>Kondisi : </label>
+                  <n-checkbox v-model="checkboxes.unchecked">Baru</n-checkbox>
+                  <n-checkbox v-model="checkboxes.unchecked">Bekas</n-checkbox>
+              </div>
               <button class="btn btn-info btn-block" type="button"><i class="fas fa-filter"></i> Filter</button>
             </div>
             <div class="col-md-8">

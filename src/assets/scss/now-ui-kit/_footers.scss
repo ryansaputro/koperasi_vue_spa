@@ -644,10 +644,15 @@ i {
       border-bottom: 1px solid #cecece;
       margin-bottom: 10px;
     }
-    .reportrange-text[data-v-2359713c]{
-      height: 30px;
-      text-align: inherit;
-      line-height: 1.5;
+
+    .reportrange-text[data-v-2359713c] {
+        text-align: inherit;
+        padding: 10px 15px;
+        line-height: 1.5;
+    }
+
+    .form-control {
+      padding:10px 15px;
     }
 
     .filter{
@@ -1654,6 +1659,13 @@ i {
       background-size:cover;
       background-repeat: no-repeat;
       background-position: center center; 
+      margin-left:5px !important;
+    }
+
+    .header{
+      margin-bottom:5px;
+      border-bottom:1px solid #cecece;
+      margin:5px -10px;
     }
 
     .checkbox-produk {
@@ -1880,6 +1892,21 @@ i {
       // padding:
     }
 
+    .vsa-list{
+      border: none !important;
+      padding:0px !important;
+    }
+
+    .vsa-item__trigger{
+      background: none !important;
+      border: none !important;
+    }
+
+    .vsa-item__trigger:focus,
+    .vsa-item__trigger:hover{
+      background: none !important;
+    }
+
     .br-breadcrumb{
       margin-top: 130px;
       box-shadow: 1px 1px 5px #cecece;
@@ -1895,6 +1922,11 @@ i {
     .pengaturan{
       box-shadow: 1px 1px 5px #cecece;
       border-radius: 10px; 
+      padding: 10px;
+    }
+
+    .urutkan {
+      margin-top: -10px;
     }
 
     .dropdown.show .dropdown-menu,
@@ -1925,9 +1957,9 @@ i {
     }
 
     .srch_bar input {
-      border: 1px solid #cecece;
-      border-width: 0 0 1px 0;
-      width: 80%;
+      // border: 1px solid #cecece;
+      // border-width: 0 0 1px 0;
+      width: 100%;
       padding: 2px 0 4px 6px;
       background: none;
     }
@@ -2007,7 +2039,7 @@ i {
 
     .received_withd_msg p {
       background: #ebebeb none repeat scroll 0 0;
-      border-radius: 3px;
+      border-radius: 10px;
       color: #646464;
       font-size: 14px;
       margin: 0;
@@ -2034,12 +2066,24 @@ i {
 
     .sent_msg p {
       background: #7ed7c0 none repeat scroll 0 0;
-      border-radius: 3px;
+      border-radius: 10px;
       font-size: 14px;
       margin: 0;
       color: #fff;
       padding: 5px 10px 5px 12px;
       width: 100%;
+    }
+
+    .product-wishlist{
+      height:290px;
+    }
+
+    .wishlist{
+      background: #ed4014 !important;
+    }
+
+    .product-grid .product-content {
+      bottom: -5px !important;
     }
 
     .outgoing_msg {
@@ -2050,6 +2094,7 @@ i {
     .sent_msg {
       float: right;
       width: 46%;
+      border-radius: 10px;
     }
 
     .input_msg_write input {

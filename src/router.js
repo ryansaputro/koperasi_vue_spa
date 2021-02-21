@@ -7,7 +7,8 @@ import Keranjang from './pages/clientside/Keranjang.vue';
 import DaftarPesanan from './pages/clientside/DaftarPesanan.vue';
 import Chatting from './pages/clientside/Chatting.vue';
 import ProdukPerKategori from './pages/clientside/ProdukPerKategori.vue';
-import Pengaturan from './pages/clientside/Pengaturan.vue';
+import Profil from './pages/clientside/Profil.vue';
+import Wishlist from './pages/clientside/Wishlist.vue';
 
 import DashboardAdmin from './pages/adminside/Dashboard.vue';
 import PageNotfound from './pages/adminside/404.vue';
@@ -116,10 +117,27 @@ const routes= [
 
     },
     {
-      path: '/pengaturan',
-      name: 'pengaturan',
+      path: '/profil',
+      name: 'profil',
       components: {
-        default: Pengaturan,
+        default: Profil,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
+      }
+
+    },
+    {
+      path: '/wishlist',
+      name: 'wishlist',
+      components: {
+        default: Wishlist,
         header: MainNavbarShop,
         footer: MainFooterShop
       },

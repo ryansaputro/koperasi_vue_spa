@@ -32,17 +32,36 @@
           </div>
           <!-- <div class="row"> -->
             <div class="col-md-4 sidemenu">
-              <strong class="tanggal">Tanggal :</strong>
-              <date-range-picker
-                v-model="dateRange"
-              ></date-range-picker>
-              <strong class="filter">Filter :</strong>
-              <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
-              <strong class="tipe-bayar">Tipe Bayar :</strong>
-              <button @click="tipeBayar('all')" v-bind:class="tipe_bayar == 'all' ? '' : 'btn-simple'" class="btn btn-round btn-info btn-sm"><i class="fas fa-money-check-alt"></i> Semua</button>
-              <button @click="tipeBayar('laku')" v-bind:class="tipe_bayar == 'laku' ? '' : 'btn-simple'" class="btn btn-round btn-success btn-sm"><i class="fas fa-hand-holding-usd"></i> Pas Laku</button>
-              <button @click="tipeBayar('cod')" v-bind:class="tipe_bayar == 'cod' ? '' : 'btn-simple'" class="btn btn-round btn-warning btn-sm"><i class="fas fa-handshake"></i> Cod</button>
-              
+              <div class="form-group">
+                  <label>Tanggal : </label>
+                  <date-range-picker
+                    v-model="dateRange"
+                  ></date-range-picker>
+              </div>
+              <div class="form-group">
+                  <label>Filter : </label>
+                  <fg-input
+                    placeholder="Cari daftar pesananmu disini.."
+                    type="text"
+                  >
+                  </fg-input>
+
+              </div>
+              <div class="form-group">
+                  <label>Urutkan : </label>
+                  <select class="form-control">
+                    <option>terbaru</option>
+                    <option>murah</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label>Metode Pembayaran : </label>
+                  <div class="d-block text-left">
+                    <button @click="tipeBayar('all')" v-bind:class="tipe_bayar == 'all' ? '' : 'btn-simple'" class="btn btn-round btn-info btn-sm"><i class="fas fa-money-check-alt"></i> Semua</button>
+                    <button @click="tipeBayar('laku')" v-bind:class="tipe_bayar == 'laku' ? '' : 'btn-simple'" class="btn btn-round btn-success btn-sm"><i class="fas fa-hand-holding-usd"></i> Pas Laku</button>
+                    <button @click="tipeBayar('cod')" v-bind:class="tipe_bayar == 'cod' ? '' : 'btn-simple'" class="btn btn-round btn-warning btn-sm"><i class="fas fa-handshake"></i> Cod</button>
+                  </div>
+              </div>
               
               <div class="info-transaksi">
                 <h5 class="info-transaksi-title">Info Transaksi</h5>
@@ -55,31 +74,49 @@
               </div>
             </div>
             <div class="col-md-8">
-              <div class="header-transaction row mb-2" v-for="(dt, idx) in 10" :key="dt.id">
-                  <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
+              <div v-for="(dt, index) in 10" class="header-transaction mb-2">
+                <div class="row header">
+                  <div class="col-md-4">
+                    <strong>IN202102210001</strong>
                   </div>
-                  <div class="col-md-5 produk">
-                      <span>20 Februari 2021 12:05:00</span>
-                      <p class="nama-produk">Blouse {{dt}}</p>
-                      <div class="deskripsi">
-                        <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptates aut exercitationem nisi sapiente ipsa deserunt, rem cumque tempora ducimus. Illo dicta corporis velit, exercitationem nisi quaerat quam quisquam voluptatibus?
-                        </span>
-                      </div>
-                      <span>{{dt}}x{{formatRupiah(100, 'Rp')}}</span>
-                        
+                  <div class="col-md-4 text-center">
+                    <strong>Sedang diproses</strong>
                   </div>
                   <div class="col-md-4 text-right">
-                    <span class="text-right harga">
-                      {{formatRupiah(dt*1000, 'Rp')}}
-                    </span>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <button class="btn btn-sm btn-simple btn-warning"><i class="fas fa-info-circle"></i> Detail</button>
-                        <n-button type="btn btn-sm btn-simple btn-danger" @click.native="modals.classic = true"><i class="fas fa-truck-moving"></i> Lacak</n-button>
+                    <strong>Rp12.000</strong>
+                  </div>
+                </div>
+                <div class="row mb-2" v-for="(dt, idx) in 4" :key="dt.id" v-if="tipe_bayar != 'all' ? tipe_bayar == 'laku' ? idx > 2 : idx <= 2 : idx > 0">
+                    <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
+                    </div>
+                    <div class="col-md-9">
+                      <div class="row">
+                        <div class="col-md-8 produk">
+                            <span>20 Februari 2021 12:05:00</span>
+                            <strong class="nama-produk d-block">Blouse {{dt}}</strong>
+                            <div class="deskripsi">
+                              <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
+                                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptates aut exercitationem nisi sapiente ipsa deserunt, rem cumque tempora ducimus. Illo dicta corporis velit, exercitationem nisi quaerat quam quisquam voluptatibus?
+                              </span>
+                            </div>
+                            <span class="d-block">{{dt}}x{{formatRupiah(100, 'Rp')}}</span>
+                            <button class="btn btn-sm btn-simple" v-bind:class="idx > 4 ? 'btn-success' : 'btn-warning'"><i class="fas " v-bind:class="idx > 4 ? 'fa-hand-holding-usd' : 'fa-handshake'"></i> {{idx > 4 ? 'Pas Laku' : 'Cod'}}</button>
+                              
+                        </div>
+                        <div class="col-md-4 text-right">
+                          <span class="text-right harga">
+                            {{formatRupiah(dt*1000, 'Rp')}}
+                          </span>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <button class="btn btn-sm btn-simple btn-info"><i class="fas fa-info-circle"></i> Detail</button>
+                              <n-button type="btn btn-sm btn-simple btn-danger" @click.native="modals.classic = true"><i class="fas fa-truck-moving"></i> Lacak</n-button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                </div>
               </div>
             </div>
         </div>
@@ -93,73 +130,19 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>No Pesanan</th>
-                    <th>Status</th>
                     <th>Jam</th>
+                    <th>Penanggung Jawab</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr class="active">
+                <tr class="active" v-for="(data, idx) in 5">
                     <td class="track_dot">
                         <span class="track_line"></span>
                     </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
-                </tr>
-                <tr>
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>01</td>
-                    <td>Dispatched from distibutor address</td>
-                    
-                    <td>31/07/2018 22:24:PM</td>
+                    <td>{{data}}/07/2018 22:{{data}}4:PM</td>
+                    <td>Ahmad Subeki {{data}}</td>
+                    <td>Ambil dari Distributor {{data}}</td>
                 </tr>
             </tbody>
         </table>
@@ -185,7 +168,7 @@
 </style>
 <script>
 import 'hooper/dist/hooper.css';
-import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane,Progress } from '../../components';
+import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane,Progress,Badge } from '../../components';
 import { Popover, Tooltip, DatePicker } from 'element-ui';
 import _ from 'lodash'
 import { ModelSelect } from 'vue-search-select'
@@ -211,6 +194,7 @@ export default {
     DateRangePicker,
     VueRangedatePicker,
     [Progress.name]: Progress,
+    Badge
 
   },
   data() {

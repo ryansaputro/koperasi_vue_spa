@@ -12,52 +12,44 @@
         <div class="row">
         </div>
         <div class="row menu-second">
-            <div class="col-md-4 sidemenu text-center mt-2">
-              <img src="https://ptetutorials.com/images/user-profile.png" class="img-profil">
-              <strong class="text-capitalize d-block">{{username}}</strong>
-            </div>
-            <div class="col-md-8 mt-2">
-              <div class="pengaturan">
-                <tabs
-                  slot="raw-content"
-                  tab-content-classes="tab-content-padding text-center"
-                >
-                  <tab-pane>
-                    <template slot="label">
-                      <i class="fas fa-server"></i> Biodata
-                    </template>
-                    <p>
-                      I think that’s a responsibility that I have, to push
-                      possibilities, to show people, this is the level that things
-                      could be at. So when you get something that has the name Kanye
-                      West on it, it’s supposed to be pushing the furthest
-                      possibilities. I will be the leader of a company that ends up
-                      being worth billions of dollars, because I got the answers. I
-                      understand culture. I am the nucleus.
-                    </p>
-                  </tab-pane>
-                  <tab-pane>
-                    <template slot="label">
-                      <i class="fas fa-map-marker-alt"></i> Alamat Pengiriman
-                    </template>
-                    <p>
-                      I will be the leader of a company that ends up being worth
-                      billions of dollars, because I got the answers. I understand
-                      culture. I am the nucleus. I think that’s a responsibility
-                      that I have, to push possibilities, to show people, this is
-                      the level that things could be at. I think that’s a
-                      responsibility that I have, to push possibilities, to show
-                      people, this is the level that things could be at.
-                    </p>
-                  </tab-pane>
-                </tabs>
-              </div>
-
+          <div class="col-md-6 mb-3">
+            <fg-input
+              placeholder="Cari barang di kategori ini.."
+              type="text"
+            >
+            </fg-input>
+          </div>
+          <div class="col-md-6 mb-3">
+            <button class="btn btn-primary mt-0"><i class="fas fa-search"></i> Cari</button>
+          </div>
+            <div class="col-md-2 col-sm-6 product" v-for="(n, index) in 12">
+                <div class="product-grid product-wishlist">
+                    <div class="product-image">
+                        <a href="/cat/pakaian/womens-blouse">
+                            <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-1.jpg">
+                            <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-2.jpg">
+                        </a>
+                        <ul class="social">
+                            <li><a href="/cat/pakaian/womens-blouse" data-tip="Detail"><i class="fas fa-search"></i></a></li>
+                            <li><a href="" data-tip="+ Wishlist"><i class="fas fa-grin-hearts"></i></a></li>
+                            <li><a href="" data-tip="+ Keranjang"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <!-- <span class="product-new-label">Sale</! --> 
+                        <span class="product-discount-label wishlist"><i class="fas fa-grin-hearts"></i> </span>
+                    </div>
+                    <div class="product-content content-wishlist">
+                        <h3 class="title"><a href="/cat/pakaian/womens-blouse">Women's Blouse {{n}}</a></h3>
+                        <div class="price">Rp{{n}}0.000<br>
+                            <span>Rp1{{n}}0.000</span>
+                        </div>
+                        <button class="btn btn-primary btn-simple"><i class="fas fa-shopping-basket"></i> Beli</button>
+                    </div>
+                </div>
             </div>
         </div>
       </div>
     </div>
-    <!-- end row -->
+
   </div>
 </template>
 <style scoped>
@@ -76,7 +68,7 @@
 </style>
 <script>
 import 'hooper/dist/hooper.css';
-import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane,Progress,Card } from '../../components';
+import { DropDown,Modal,Button,FormGroupInput,Checkbox,Radio,Tabs,TabPane,Progress } from '../../components';
 import { Popover, Tooltip, DatePicker } from 'element-ui';
 import _ from 'lodash'
 import { ModelSelect } from 'vue-search-select'
@@ -100,7 +92,6 @@ export default {
     [Checkbox.name]: Checkbox,
     Tabs,
     TabPane,
-    Card,
     DateRangePicker,
     VueRangedatePicker,
     [Progress.name]: Progress,
@@ -111,7 +102,6 @@ export default {
     let endDate = new Date();
     endDate.setDate(endDate.getDate() + 6)
     return {
-        username:'',
         checkboxes: {
           unchecked: false,
           checked: true,
@@ -197,10 +187,6 @@ export default {
   created() {
     this.getCartData();
     this.tipeBayar();
-    var users = localStorage.getItem('users');
-    var user = JSON.parse(users)
-    this.username = user.username;
-
   },
   computed: {
     currentRouteName() {

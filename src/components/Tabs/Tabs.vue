@@ -78,7 +78,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'default',
+      default: 'neutral',
       validator: value => {
         let acceptedValues = [
           'primary',

@@ -34,8 +34,15 @@
   <template slot="navbar-menu">
 
       <li class="nav-item search" v-bind:class="currentRouteName == 'dashboard' ? 'active' : ''">
-        <div class="col-sm-12 col-lg-12">
-          <div class="input-group"><!----> <input aria-describedby="addon-right addon-left" placeholder="Yuk cari barangmu disini ...." class="form-control"> <span class="input-group-addon input-group-append"><i class="input-group-text now-ui-icons ui-1_zoom-bold"></i></span>  <!----></div>
+        <div class="row">
+          <div class="col-md-8">
+            <input type="text" style="height:auto;" class="form-control" placeholder="Yuk cari barangmu disini ngab...">
+          </div>
+          <div class="col-md-3 mt-0">
+            <button class="btn btn-primary mt-0" type="button" style="height:auto;">
+              <i class="fas fa-search"></i> 
+              Cari</button>
+          </div>
         </div>
       </li>
       <li class="nav-item" v-if="isLogin == true">
@@ -67,6 +74,13 @@
               <i class="fas fa-comments-dollar"></i>
               <p>Percakapan</p>
             </a>
+            <a
+              class="nav-link"
+              href="/ulasan"
+            >
+              <i class="fas fa-comment-alt"></i>
+              <p>Ulasan</p>
+            </a>
           </drop-down>
       </li>
       <li class="nav-item" v-if="isLogin == true">
@@ -82,14 +96,14 @@
       </div>
         <a
           class="nav-link"
-          href="/pengaturan"
+          href="/profil"
         >
           <i class="fas fa-user-cog"></i>
-          <p>Pengaturan</p>
+          <p>Profil</p>
         </a>
         <a
           class="nav-link"
-          href="/administrator/role"
+          href="/wishlist"
         >
           <i class="fas fa-grin-hearts"></i>
           <p>Wishlist</p>
@@ -152,12 +166,12 @@
 
 </style>
 <script>
-import { DropDown, Navbar, NavLink } from '../components';
+import { DropDown, Navbar, NavLink, FormGroupInput } from '../components';
 import { Popover } from 'element-ui';
 export default {
   name: 'main-navbar',
   bodyClass: 'main-navbar',
-  components: {DropDown,Navbar,NavLink,[Popover.name]: Popover},
+  components: {DropDown,Navbar,NavLink,[Popover.name]: Popover, [FormGroupInput.name]: FormGroupInput},
   data() {
     return {
       isLogin:'',
