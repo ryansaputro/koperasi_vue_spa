@@ -1616,7 +1616,7 @@ i {
     .catatan {
       font-size:12px;
       line-height: 1em;
-      font-weight: 600;
+      // font-weight: 600;
     }
 
     .categories {
@@ -1659,13 +1659,38 @@ i {
       background-size:cover;
       background-repeat: no-repeat;
       background-position: center center; 
-      margin-left:5px !important;
+      // margin-left:5px !important;
+      border-radius:10px;
+    }
+
+    .section-keranjang{
+      box-shadow:1px 1px 5px #cecece;
+      border-radius:10px;
+      padding:10px;
     }
 
     .header{
       margin-bottom:5px;
       border-bottom:1px solid #cecece;
       margin:5px -10px;
+    }
+
+    .header-tgl{
+      margin-bottom:-5px !important;
+      border-bottom:1px solid #cecece;
+      margin:5px -10px;
+    }
+
+    .detail{
+      border-bottom: 1px solid #cecece;
+      margin: 0px -10px 0px -10px;
+      border-top: 1px solid #cecece;
+    }
+
+    .header-separator {
+      border-right: 1px solid #cecece;
+      border-left: 1px solid #cecece;
+      // padding: 10px;
     }
 
     .checkbox-produk {

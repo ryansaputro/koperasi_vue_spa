@@ -166,12 +166,12 @@
 
 </style>
 <script>
-import { DropDown, Navbar, NavLink, FormGroupInput } from '../components';
+import { DropDown, Navbar, NavLink, FormGroupInput, Badge } from '../components';
 import { Popover } from 'element-ui';
 export default {
   name: 'main-navbar',
   bodyClass: 'main-navbar',
-  components: {DropDown,Navbar,NavLink,[Popover.name]: Popover, [FormGroupInput.name]: FormGroupInput},
+  components: {DropDown,Navbar,NavLink,[Popover.name]: Popover, [FormGroupInput.name]: FormGroupInput, Badge},
   data() {
     return {
       isLogin:'',

@@ -9,6 +9,7 @@ import Chatting from './pages/clientside/Chatting.vue';
 import ProdukPerKategori from './pages/clientside/ProdukPerKategori.vue';
 import Profil from './pages/clientside/Profil.vue';
 import Wishlist from './pages/clientside/Wishlist.vue';
+import Ulasan from './pages/clientside/Ulasan.vue';
 
 import DashboardAdmin from './pages/adminside/Dashboard.vue';
 import PageNotfound from './pages/adminside/404.vue';
@@ -138,6 +139,23 @@ const routes= [
       name: 'wishlist',
       components: {
         default: Wishlist,
+        header: MainNavbarShop,
+        footer: MainFooterShop
+      },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'white' }
+      },
+      meta: {
+        auth: true,
+      }
+
+    },
+    {
+      path: '/ulasan',
+      name: 'ulasan',
+      components: {
+        default: Ulasan,
         header: MainNavbarShop,
         footer: MainFooterShop
       },

@@ -10,26 +10,8 @@
     <div class="main-detail">
       <div class="container">
         <div class="row menu-second">
-          <div class="col-md-8 bee-col-sm-offset-8 filter pl-3" v-if="tipe_bayar == 'all'">
-            <button class="btn btn-round btn-info"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-info btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
-          </div>
-          <div class="col-md-8 bee-col-sm-offset-8 filter pl-3" v-else-if="tipe_bayar == 'laku'">
-            <button class="btn btn-round btn-success"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-success btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
-          </div>
-          <div class="col-md-8 bee-col-sm-offset-8 filter pl-3" v-else>
-            <button class="btn btn-round btn-warning"><i class="fas fa-th-list"></i> Semua</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-retweet"></i> Pesanan Diproses</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-car-side"></i> Pesanan Dikirim</button>
-            <button class="btn btn-round btn-warning btn-simple"><i class="fas fa-clipboard-check"></i> Pesanan Selesai</button>
-          </div>
           <!-- <div class="row"> -->
-            <div class="col-md-4 sidemenu">
+            <div class="col-md-4 sidemenu mt-2">
               <div class="form-group">
                   <label>Tanggal : </label>
                   <date-range-picker
@@ -71,7 +53,7 @@
                 </n-progress>
               </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 mt-2">
               <div v-for="(dt, index) in 10" class="header-transaction mb-2">
                 <div class="row header-tgl">
                   <div class="col-md-12">
@@ -85,7 +67,7 @@
                   </div>
                   <div class="col-md-4 text-center header-separator p-3">
                     <span class="d-block">Status</span>
-                    <strong>Sedang diproses</strong>
+                    <strong>Selesai</strong>
                   </div>
                   <div class="col-md-4 text-right p-3">
                     <span class="d-block">Total</span>
@@ -105,6 +87,7 @@
                               </span>
                             </div>
                             <span class="d-block">{{dt}}x{{formatRupiah(100, 'Rp')}}</span>
+                            <n-button type="btn btn-sm btn-simple btn-info" @click.native="modals.classic = true"><i class="fas fa-comment-alt"></i> Ulasan</n-button>
                         </div>
                         <div class="col-md-4 text-right">
                           <span class="text-right harga">
@@ -117,8 +100,6 @@
                 <div class="row">
                   <div class="col-md-12">
                     <button class="btn btn-sm btn-warning"><i class="fas fa-hand-holding-usd"></i>Cod</button>
-                    <!-- <n-button type="btn btn-sm btn-simple btn-info" @click.native="modals.mini = true"><i class="fas fa-info-circle"></i> Detail</n-button> -->
-                    <n-button type="btn btn-sm btn-simple btn-danger" @click.native="modals.classic = true"><i class="fas fa-truck-moving"></i> Lacak</n-button>
                   </div>
                 </div>
 
@@ -130,27 +111,25 @@
 
     <!-- Classic Modal -->
     <modal :show.sync="modals.classic" headerClasses="justify-content-center">
-      <h4 slot="header" class="title title-up">Lacak Pesanan</h4>
-        <table class="table table-bordered track_tbl">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Jam</th>
-                    <th>Penanggung Jawab</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="active" v-for="(data, idx) in 5">
-                    <td class="track_dot">
-                        <span class="track_line"></span>
-                    </td>
-                    <td>{{data}}/07/2018 22:{{data}}4:PM</td>
-                    <td>Ahmad Subeki {{data}}</td>
-                    <td>Ambil dari Distributor {{data}}</td>
-                </tr>
-            </tbody>
-        </table>
+      <h4 slot="header" class="title title-up">Ulas Produk</h4>
+        <div class="row">
+          <div class="col-md-2 img-produk" v-bind:style="{ backgroundImage: 'url(' + img + ')' }">
+          </div>
+          <div class="col-md-6 produk">
+              <strong class="nama-produk d-block">Blouse 1</strong>
+              <div class="deskripsi">
+                <span class="d-inline-block text-truncate text-nowrap text-deskripsi">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptates aut exercitationem nisi sapiente ipsa deserunt, rem cumque tempora ducimus. Illo dicta corporis velit, exercitationem nisi quaerat quam quisquam voluptatibus?
+                </span>
+              </div>
+              <span class="d-block">1x{{formatRupiah(100, 'Rp')}}</span>
+          </div>
+          <div class="col-md-4 text-right">
+            <span class="text-right harga">
+              {{formatRupiah(1*1000, 'Rp')}}
+            </span>
+          </div>
+        </div>
     </modal>
 
     <modal

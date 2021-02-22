@@ -93,11 +93,11 @@
                 Tambah Alamat
               </n-button>
             </div>
-            <div v-else class="alamat-pengiriman">
-              <p class="pengiriman text-capitalize font-weight-bold">{{form.label}}
+            <div v-else class="row section-keranjang mb-3 d-block">
+              <p class="pengiriman text-capitalize font-weight-bold"><i class="fas fa-check-circle"></i> {{form.label}}
               </p>
-              <p class="pengiriman text-capitalize font-weight-bold">{{form.penerima}} ({{form.handphone}})</p>
-              <p class="pengiriman text-capitalize text-truncate">{{form.alamat}}</p>
+              <p class="pengiriman text-capitalize font-weight-bold"><i class="fas fa-check-circle"></i> {{form.penerima}} ({{form.handphone}})</p>
+              <p class="pengiriman text-capitalize text-truncate"><i class="fas fa-check-circle"></i> {{form.alamat}}</p>
               <n-button type="default btn-simple btn-sm" @click.native="modals.mini = true">
               <span class="now-ui-icons design-2_ruler-pencil"></span>
                 Ubah Alamat
@@ -105,7 +105,7 @@
             </div>
 
             <h5 class="title title-up alamat-pengiriman">Total Pembelian</h5>
-            <div class="row">
+            <div class="row section-keranjang mb-3">
               <div class="col-sm-6">
                 <strong>Total Pembelian</strong>
               </div>
@@ -132,19 +132,34 @@
             <h5 class="title title-up alamat-pengiriman">
               Metode Pembayaran
             </h5>
-            <div class="col-md-6">
-              <n-radio v-model="radios.radioOn" label="1">Bayar di tempat (COD)</n-radio>
+            <div class="row section-keranjang mb-3">
+              <div class="col-md-6">
+                <n-radio v-model="radios.radioOn" label="2">Bayar di tempat (COD)</n-radio>
+              </div>
+              <div class="col-md-6">
+                <n-radio v-model="radios.radioOn" label="1">Bayar pas laku
+                  <el-tooltip
+                    class="item"
+                    content="Metode pembayaran 'bayar pas laku' hanya berlaku untuk produk tertentu. "
+                    placement="bottom"
+                  >
+                    <span class="now-ui-icons travel_info"></span>
+                  </el-tooltip>
+                </n-radio>
+              </div>
             </div>
-            <div class="col-md-6">
-              <n-radio v-model="radios.radioOn" label="2">Bayar pas laku
-                <el-tooltip
-                  class="item"
-                  content="Metode pembayaran 'bayar pas laku' hanya berlaku untuk produk tertentu. "
-                  placement="bottom"
+            <h5 class="title title-up alamat-pengiriman">
+              Kupon
+            </h5>
+            <div class="row section-keranjang mb-3">
+              <div class="col-md-6">
+                <fg-input
+                  placeholder="nomor kupon"
+                  type="text"
                 >
-                  <span class="now-ui-icons travel_info"></span>
-                </el-tooltip>
-              </n-radio>
+                </fg-input>
+
+              </div>
             </div>
         </div>
       </div>
@@ -177,34 +192,45 @@
       </div>
       <p>Masukkan alamat pengiriman anda.</p>
       <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+              <label>Label Alamat : </label>
+              <fg-input
+                class="no-border mt-2"
+                placeholder="Rumah, Kos, Kantor, dll."
+                v-model="form.label"
+                >
+              </fg-input>
+          </div>
+          <div class="form-group">
+              <label>Penerima : </label>
+              <fg-input
+                class="no-border mt-2"
+                placeholder="Penerima."
+                v-model="form.penerima"
+                >
+              </fg-input>
+          </div>
+          <div class="form-group">
+              <label>Handphone : </label>
+              <fg-input
+                class="no-border mt-2"
+                placeholder="Handphone."
+                v-model="form.handphone"
+                >
+              </fg-input>
+          </div>
+          <div class="form-group">
+              <label>Detail Alamat : </label>
+              <textarea
+                class="form-control mt-2"
+                name="alamat"
+                v-model="form.alamat"
+                placeholder="Nama jalan ataupun ciri-ciri rumah"
+              ></textarea>
 
-        <fg-input
-          class="no-border mt-2"
-          placeholder="Rumah, Kos, Kantor, dll."
-          v-model="form.label"
-          addon-right-icon="now-ui-icons shopping_shop">
-        </fg-input>
-
-        <fg-input
-          class="no-border mt-2"
-          placeholder="Penerima."
-          v-model="form.penerima"
-          addon-right-icon="now-ui-icons users_single-02">
-        </fg-input>
-
-        <fg-input
-          class="no-border mt-2"
-          placeholder="Handphone."
-          v-model="form.handphone"
-          addon-right-icon="now-ui-icons tech_mobile">
-        </fg-input>
-
-          <textarea
-            class="form-control mt-2"
-            name="alamat"
-            v-model="form.alamat"
-            placeholder="Nama jalan ataupun ciri-ciri rumah"
-          ></textarea>
+          </div>
+        </div>
       </div>
 
       <template slot="footer">
