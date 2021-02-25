@@ -37,6 +37,11 @@
         <div class="row">
           <div class="col-md-8">
             <input type="text" style="height:auto;" class="form-control" placeholder="Yuk cari barangmu disini ngab...">
+            <div v-if="isLogin == true">
+              <a href="/categories/sepatu"><span class="badge badge-default">sepatu</span></a>
+              <a href="/categories/kolor"><span class="badge badge-default">kolor</span></a>
+              <a href="/categories/kulkas dua pintu"><span class="badge badge-default">kulkas dua pintu</span></a>
+            </div>
           </div>
           <div class="col-md-3 mt-0">
             <button class="btn btn-primary mt-0" type="button" style="height:auto;">
@@ -190,9 +195,13 @@ export default {
   created() {
     this.currentRouteName = this.$route.name;
     this.isLogin = localStorage.getItem('users') != null ? true : false;
-    var users = localStorage.getItem('users');
-    var user = JSON.parse(users)
-    this.username = user.username;
+    if(this.isLogin != false){
+      var users = localStorage.getItem('users');
+      var user = JSON.parse(users)
+      this.username = user.username;
+    }else{
+      this.username = null;
+    }
   },
   methods: {
     onLogout() {

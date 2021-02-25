@@ -174,7 +174,8 @@ const routes= [
       components: {
         default: Indexs,
         header: MainNavbarShop,
-        footer: MainFooterShop },
+        footer: MainFooterShop 
+      },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }
@@ -183,7 +184,11 @@ const routes= [
     {
       path: '/login',
       name: 'login',
-      components: { default: Login, header: MainNavbar },
+      components: {
+        default: Login, 
+        // header: MainNavbarShop,
+        // footer: MainFooterShop 
+       },
       props: {
         header: { colorOnScroll: 400 }
       }

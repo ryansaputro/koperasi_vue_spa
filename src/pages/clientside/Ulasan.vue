@@ -87,12 +87,36 @@
                               </span>
                             </div>
                             <span class="d-block">{{dt}}x{{formatRupiah(100, 'Rp')}}</span>
-                            <n-button type="btn btn-sm btn-simple btn-info" @click.native="modals.classic = true"><i class="fas fa-comment-alt"></i> Ulasan</n-button>
                         </div>
                         <div class="col-md-4 text-right">
                           <span class="text-right harga">
                             {{formatRupiah(dt*1000, 'Rp')}}
                           </span>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="row mb-3 mt-3">
+                            <div class="col-md-8 textarea-container">
+                              <textarea
+                                class="form-control"
+                                name="name"
+                                rows="4"
+                                cols="80"
+                                placeholder="Tuliskan ulasanmu..."
+                              ></textarea>
+                            </div>
+                            <div class="col-md-4 text-right">
+                              <div class="rate">
+                                <span @click="nilai(1, dt)" v-bind:class="'dt-1-'+dt+ ' ulasan-'+dt" class="now-ui-icons objects_diamond ulasan"></span>
+                                <span @click="nilai(2, dt)" v-bind:class="'dt-2-'+dt+ ' ulasan-'+dt" class="now-ui-icons objects_diamond ulasan"></span>
+                                <span @click="nilai(3, dt)" v-bind:class="'dt-3-'+dt+ ' ulasan-'+dt" class="now-ui-icons objects_diamond ulasan"></span>
+                                <span @click="nilai(4, dt)" v-bind:class="'dt-4-'+dt+ ' ulasan-'+dt" class="now-ui-icons objects_diamond ulasan"></span>
+                                <span @click="nilai(5, dt)" v-bind:class="'dt-5-'+dt+ ' ulasan-'+dt" class="now-ui-icons objects_diamond ulasan"></span>
+                              </div>
+
+                              <button type="button" @click="ulasanCheck(dt)" class="btn-block btn btn-sm btn-simple btn-info"><i class="fas fa-paper-plane"></i> Kirim Ulasan</button>
+                              <!-- <button class="btn-block btn btn-sm btn-simple btn-primary"><i class="fas fa-paper-plane"></i> Beli lagi</button> -->
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -128,6 +152,8 @@
             <span class="text-right harga">
               {{formatRupiah(1*1000, 'Rp')}}
             </span>
+          </div>
+          <div class="">
           </div>
         </div>
     </modal>
@@ -220,6 +246,15 @@
   .text-black {
     color: #000;
   }
+  .imagePreviewWrapper {
+    width: 250px;
+    height: 250px;
+    display: block;
+    cursor: pointer;
+    margin: 0 auto 30px;
+    background-size: cover;
+    background-position: center center;
+}
 </style>
 <script>
 import 'hooper/dist/hooper.css';
@@ -232,11 +267,16 @@ import {en, id} from 'vuejs-datepicker/dist/locale'
 import DateRangePicker from 'vue2-daterange-picker'
 import 'vue2-daterange-picker/dist/vue2-daterange-picker.css'
 import VueRangedatePicker from 'vue-rangedate-picker'
+import {mapState} from 'vuex';
+import VueCropper from 'vue-cropperjs'
+import 'cropperjs/dist/cropper.css'
+
 
 export default {
   name: 'index',
   bodyClass: 'index-page',
   components: {
+    VueCropper,
     DropDown,
     Modal,
     [DatePicker.name]: DatePicker,
@@ -250,13 +290,15 @@ export default {
     VueRangedatePicker,
     [Progress.name]: Progress,
     Badge
-
   },
+  props: ['image_name'],
   data() {
     let startDate = new Date();
     let endDate = new Date();
     endDate.setDate(endDate.getDate() + 6)
     return {
+        ulasan:[],
+        previewImage: null,
         pickers: {
           datePicker: ''
         },
@@ -294,6 +336,28 @@ export default {
     }
   },
   methods: {
+    nilai(data_id, per_transaksi) {
+      $('.ulasan-'+per_transaksi).removeClass('nyala');
+      for(var i=1;i<=data_id; i++){
+        $('.dt-'+i+'-'+per_transaksi).addClass('nyala');
+      }
+        
+    },
+    selectImage () {
+        this.$refs.fileInput.click()
+    },
+    pickFile () {
+      let input = this.$refs.fileInput
+      let file = input.files
+      if (file && file[0]) {
+        let reader = new FileReader
+        reader.onload = e => {
+          this.previewImage = e.target.result
+        }
+        reader.readAsDataURL(file[0])
+        this.$emit('input', file[0])
+      }
+    },
     tipeBayar(tipe_bayar) {
       console.log(tipe_bayar);
       if(typeof(tipe_bayar) === 'undefined'){
@@ -338,6 +402,6 @@ export default {
     this.getCartData();
     this.tipeBayar();
     this.currentRouteName = this.$route.name;
-  }
+  },
 };
 </script>

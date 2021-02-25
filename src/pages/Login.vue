@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header clear-filter" filter-color="orange">
+  <div class="page-header clear-filter">
     <div
       class="page-header-image"
     ></div>
@@ -9,13 +9,13 @@
         <div class="col-md-5 ml-auto mr-auto">
           <card type="login" plain>
             <div slot="header" class="logo-container">
+              <!-- <img v-lazy="'/img/toko-kita.png'" alt="" /> -->
               <img v-lazy="'img/now-logo.png'" alt="" />
             </div>
             <form @submit.prevent="onSubmit()">
               <fg-input
                 type="email"
                 class="no-border input-lg"
-                addon-left-icon="now-ui-icons users_circle-08"
                 placeholder="Email..."
                 v-model="email"
               >
@@ -24,7 +24,6 @@
               <fg-input
                 type="password"
                 class="no-border input-lg"
-                addon-left-icon="now-ui-icons text_caps-small"
                 placeholder="Password..."
                 v-model="password"
               >
@@ -34,8 +33,18 @@
                 class="btn btn-primary btn-round btn-lg btn-block"
                 >Login</button
               >
+                <div class="pull-left">
+                  <h6>
+                    <a href="#pablo" class="link footer-link">Buat Akun</a>
+                  </h6>
+                </div>
+                <div class="pull-right">
+                  <h6>
+                    <a href="#pablo" class="link footer-link">Butuh Bantuan?</a>
+                  </h6>
+                </div>
 
-              <!-- <template slot="raw-content">
+              <template slot="raw-content">
                 <div class="card-footer text-center">
                   <button
                     type="submit"
@@ -53,7 +62,7 @@
                     <a href="#pablo" class="link footer-link">Butuh Bantuan?</a>
                   </h6>
                 </div>
-              </template> -->
+              </template>
             </form>
           </card>
         </div>
@@ -64,7 +73,7 @@
 <script>
 
 import { Card, Button, FormGroupInput } from '../components';
-import MainFooter from '../layout/MainFooter';
+// import MainFooter from '../layout/MainFooter';
 
 export default {
   name: 'login-page',
